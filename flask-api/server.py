@@ -1,9 +1,12 @@
 # Using flask to make an api
 # import necessary libraries and functions
 from flask import Flask, jsonify, request
+from flask_cors import CORS
+
   
 # creating a Flask app
 app = Flask(__name__)
+CORS(app)
   
 # on the terminal type: curl http://127.0.0.1:5000/
 # returns hello world when we use GET.
@@ -22,11 +25,10 @@ def home():
         # difficulty_level = request.form.get('difficulty_level')
         # question = request.form.get('question')
         # topics = request.form.get('topics')
-        print(request.form, request.args)
+        print("param or body?" , request.form, request.args)
         # request.args gets from params
-        img = request.form.get("img") # form = body
+        img = request.args.get("img") # form = body
         print(img)
-        data = "hello world posts"
         return jsonify({'data': img})
   
   
