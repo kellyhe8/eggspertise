@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Header/>
-      <div className="column">
+      <div className="column feed">
         <LeftNavCol/>
         <CenterHomeCol/>
         <RightFeedbackCol/>

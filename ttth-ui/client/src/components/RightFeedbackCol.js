@@ -9,7 +9,7 @@ export default function RightFeedbackCol() {
   // let state = { 
   //   message: ""
   //  } 
-    return (<div className="right-col-margin">
+    return (<div className="right-col">
       <p className="code">Feedback</p>
       {/* <p>{state}</p> */}
     </div>);

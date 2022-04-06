@@ -10,7 +10,7 @@ export default function Recognize() {
   return (
     <>
       <Header/>
-      <div className="column">
+      <div className="column feed">
         <LeftNavCol/>
         <CenterRecognizeCol/>
         <RightFeedbackCol/>

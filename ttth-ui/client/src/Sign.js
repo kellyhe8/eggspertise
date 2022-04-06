@@ -10,7 +10,7 @@ export default function Sign() {
   return (
     <>
       <Header/>
-      <div className="column">
+      <div className="column feed">
         <LeftNavCol/>
         <CenterSignCol/>
         <RightFeedbackCol/>

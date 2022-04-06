@@ -15,7 +15,7 @@ export default function LeftNavCol() {
   };
 
   // render() { 
-    return (<div className="left-col-margin">
+    return (<div className="left-col">
       <p className="code">Study Modes</p>
       <ToggleButtonGroup
         orientation="vertical"
