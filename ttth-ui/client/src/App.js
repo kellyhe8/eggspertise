@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './Home';
 import Recognize from './Recognize';
 import Sign from './Sign';
+
 // import Header from './components/Header';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -54,28 +55,32 @@ function App() {
   // }
 
   return (
-    <Router>
-        <div className="App">
-      {/* <ThemeProvider theme={theme}> */}
-      {/* <header className="App-header"> */}
-      {/* <Header/> */}
-        <Routes>
+    <div>
+      <Router>
+          <div className="App">
+        {/* <ThemeProvider theme={theme}> */}
+        {/* <header className="App-header"> */}
+        {/* <Header/> */}
+          <Routes>
+            
+            {/* <hr/> */}
+            <Route path="/" element={<Home />} />
+            {/* <Route exact path="/" element={<Home/>} /> */}
+            <Route path="/recognize" element={<Recognize/>} />
+            <Route path="/sign" element={<Sign/>} />
+            <Route path="*" element={<Home/>}/>
+          </Routes>
+          {/* <Home/>
+          <Recognize/>
+          <Sign/> */}
           
-          {/* <hr/> */}
-          <Route path="/" element={<Home />} />
-          {/* <Route exact path="/" element={<Home/>} /> */}
-          <Route path="/recognize" element={<Recognize/>} />
-          <Route path="/sign" element={<Sign/>} />
-          <Route path="*" element={<Home/>}/>
-        </Routes>
-        {/* <Home/>
-        <Recognize/>
-        <Sign/> */}
-        
-      {/* </header> */}
-      {/* </ThemeProvider> */}
-    </div>
+        {/* </header> */}
+        {/* </ThemeProvider> */}
+      </div>
       </Router>
+
+      {/* <LeapData /> */}
+    </div>
   );
 }
 

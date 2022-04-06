@@ -6,6 +6,12 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+// Leap.loop({ hand:function(hand) {
+//   console.log( hand.screenPosition() );
+
+// }.use('screenPosition')
+// })
+
 
 app.get("/", (req, res) => {
     res.send("Hello World!");

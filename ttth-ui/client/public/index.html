@@ -24,11 +24,55 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+
+    <!-- Leap -->
+    <script src="./lib/leap-1.1.1.js"></script>
+    <script src="//js.leapmotion.com/leap-0.6.3.min.js"></script>
+    <script src="//js.leapmotion.com/leap-0.6.3.js"></script>
+
+
+
+    <script>
+
+      // to make working with angles easy
+      window.TO_RAD = Math.PI / 180;
+      window.TO_DEG = 1 / TO_RAD;
+
+      Leap.loop({
+
+        // frame callback is run before individual frame components
+        frame: function(frame){
+          out.innerHTML = ''
+        },
+
+        // hand callbacks are run once for each hand in the frame
+        hand: function(hand){
+          out.innerHTML += "Hand: " + hand.id + ' &nbsp;roll: ' + Math.round(hand.roll() * TO_DEG) + '°<br/>'
+        }
+
+      });
+
+    </script>
+
+    <style>
+      body {
+        line-height: 2em;
+        font-size: 2em;
+        font-family: Helvetica;
+      }
+    </style>
+
+
+    <!-- <script type="text/javascript" src="lib/leap.min.js"></script>
+    <script type="text/javascript" src="lib/leap-plugins.min.js"></script> -->
     <title>React App</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    HIHI
+    <div id="out"></div>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -41,3 +85,4 @@
     -->
   </body>
 </html>
+
