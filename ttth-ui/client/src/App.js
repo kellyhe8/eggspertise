@@ -1,11 +1,9 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import CenterRecognizeCol from './components/CenterRecognizeCol';
-// import LeftNavCol from './components/LeftNavCol';
-// import RightFeedbackCol from './components/RightFeedbackCol';
 import Home from './Home';
 import Recognize from './Recognize';
 import Sign from './Sign';
+// import Header from './components/Header';
 // import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // const theme = createTheme({
@@ -60,7 +58,10 @@ function App() {
         <div className="App">
       {/* <ThemeProvider theme={theme}> */}
       {/* <header className="App-header"> */}
+      {/* <Header/> */}
         <Routes>
+          
+          {/* <hr/> */}
           <Route path="/" element={<Home />} />
           {/* <Route exact path="/" element={<Home/>} /> */}
           <Route path="/recognize" element={<Recognize/>} />
