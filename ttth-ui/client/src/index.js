@@ -4,9 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// var Hello = props => (
+//   <div>{ props.title}, { props.name }</div>
+// );
+
+// var root = document.getElementById('container');
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
+    {/* <Hello {...(root.dataset)} /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
