@@ -1,123 +1,63 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Home from './Home';
 import Recognize from './Recognize';
 import Sign from './Sign';
 
-import * as tf from '@tensorflow/tfjs';
-import * as jpeg from 'jpeg-js'
+import axios from 'axios';
 
 
-import MyApp from './leap/LeapData';
+// import * as tf from '@tensorflow/tfjs';
+// import * as jpeg from 'jpeg-js'
+
+
+// import MyApp from './leap/LeapData';
 // import Header from './components/Header';
-// import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-// const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: "#345995",
-//     },
-//   },
-// });
+const theme = createTheme({
+  typography: {
+    fontFamily: "source-code-pro, Menlo, Monaco, Consolas, 'Courier New'",
+    fontSize: 16
+  },
+  palette: {
+    primary: {
+      main: "#345995", // blue
+    },
+    secondary: {
+      main: "#6A8D73" // green
+    },
+    text: {
+      primary: "#345995", // blue
+      secondary: "#345995" // blue
+    }
+  },
+});
 
 function App() {
-  // useEffect(() => {
-  //   async function loadModel(){
-  //     console.log("[+] Application started")
-  //     //Wait for tensorflow module to be ready
-  //     const tfReady = await tf.ready();
-  //     console.log("[+] Loading custom mask detection model")
-  //     //Replce model.json and group1-shard.bin with your own custom model
-  //     const modelJson = await require("./assets/model/model.json");
-  //     const modelWeight = await require("./assets/model/group1-shard.bin");
-  //     const maskDetector = await tf.loadLayersModel(bundleResourceIO(modelJson,modelWeight));
-  //     console.log("[+] Loading pre-trained face detection model")
-  //     //Blazeface is a face detection model provided by Google
-  //     const faceDetector =  await blazeface.load();
-  //     //Assign model to variable
-  //     setMaskDetector(maskDetector)
-  //     setFaceDetector(faceDetector)
-  //     console.log("[+] Model Loaded")
-  //   }
-  //   loadModel()
-  // }, []); 
 
-  // function imageToTensor(rawImageData){
-  //   //Function to convert jpeg image to tensors
-  //   const TO_UINT8ARRAY = true;
-  //   // const { width, height, data } = jpeg.decode(rawImageData, TO_UINT8ARRAY);
-  //   const width = 64;
-  //   const height = 64;
-  //   const data = rawImageData;
-
-  //   // Drop the alpha channel info for mobilenet
-  //   const buffer = new Uint8Array(width * height * 3);
-  //   let offset = 0; // offset into original data
-  //   for (let i = 0; i < buffer.length; i += 3) {
-  //     buffer[i] = data[offset];
-  //     buffer[i + 1] = data[offset + 1];
-  //     buffer[i + 2] = data[offset + 2];
-  //     offset += 4;
-  //   }
-  //   return tf.tensor3d(buffer, [height, width, 3]);
-  // }
-
-
-  // const videoRef = useRef(null);
-  // const photoRef = useRef(null);
-
-  // useEffect(() => {
-  //   getVideo();
-  // }, [videoRef]);
-
-  // const getVideo = () => {
-  //   navigator.mediaDevices
-  //     .getUserMedia({ 
-  //       video: { width: 300 } 
-
-  //     })
-  //     .then(stream => {
-  //       let video = videoRef.current;
-  //       video.srcObject = stream;
-  //       video.play();
-
-  //       // let track;
-  //       // setInterval(() => {
-  //       //   track = stream.getVideoTracks()[0];
-  //       // }, 200);
-  //       // let imageCapture = new ImageCapture(track);
-  //       // console.log(imageCapture);
-  //     })
-  //     .catch(err => {
-  //       console.error("error:", err);
-  //     });
-  // };
-
-  // const getImage = () => {
-  //   let video = videoRef.current;
-  //   let photo = photoRef.current;
-  //   let ctx = photo.getContext("2d");
-
-  //   const width = 64;
-  //   const height = 64;
-  //   photo.width = width;
-  //   photo.height = height;
-
-  //   console.log(photoRef.current);
-  //   return setInterval(() => {
-  //     ctx.drawImage(video, 0, 0, width, height);
-  //     // var data = photo.toDataURL('image/jpeg');
-  //     var data = ctx.getImageData(0,0,width, height);
-  //     var tensor = imageToTensor(Array.from(data.data));
-  //   }, 500);
-  // };
-
+  const [count, setCount] = useState(0);
+  
+  let request = () => {
+    // e.preventDefault()
+    const params  = {
+        img: "[asdasdasd]"
+    };
+    axios.post('http://127.0.0.1:5000', {}, { params: { img: count }})
+        .then((res) => {
+            console.log(res.data)
+        }).catch((error) => {
+            console.log(error)
+        });
+    setCount(count + 1)
+}
+  
   return (
     <div>
       <Router>
           <div className="App">
-        {/* <ThemeProvider theme={theme}> */}
+        <ThemeProvider theme={theme}>
         {/* <header className="App-header"> */}
         {/* <Header/> */}
           <Routes>
@@ -132,9 +72,11 @@ function App() {
           {/* <Home/>
           <Recognize/>
           <Sign/> */}
+          <button onClick={request}>request</button>
+          <p>requested {count} times</p>
           
         {/* </header> */}
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
       </div>
       </Router>
         {/* <video ref={videoRef} onCanPlay={() => getImage()} />

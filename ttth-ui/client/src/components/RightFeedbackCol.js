@@ -10,7 +10,7 @@ export default function RightFeedbackCol() {
   //   message: ""
   //  } 
     return (<div className="right-col">
-      <p className="code">Feedback</p>
+      <p>Feedback</p>
       {/* <p>{state}</p> */}
     </div>);
   }
