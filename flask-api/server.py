@@ -10,8 +10,12 @@ import tensorflow as tf
 from tensorflow import keras
 from keras.models import load_model
 
+from flask_cors import CORS
+
+  
 # creating a Flask app
 app = Flask(__name__)
+CORS(app)
   
 imageSize = 64
 asl_model = load_model("model_1.h5")
