@@ -72,8 +72,8 @@ function App() {
           {/* <Home/>
           <Recognize/>
           <Sign/> */}
-          <button onClick={request}>request</button>
-          <p>requested {count} times</p>
+          {/* <button onClick={request}>request</button>
+          <p>requested {count} times</p> */}
           
         {/* </header> */}
         </ThemeProvider>

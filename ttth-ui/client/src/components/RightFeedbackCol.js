@@ -19,7 +19,7 @@ export default function RightFeedbackCol() {
     setFeedback(fb => [...feedback, fb])
   }
 
-  let array = feedback.map(f => (<li className="feedback-list">{f}</li>));
+  let array = feedback.map(f => (<li className="feedback-list" key={f}>{f}</li>));
   // for(let i = 0; i < feedback.length; i++) {
   //   array.push(
   //     <li className="feedback-list">{feedback[i]}</li>
