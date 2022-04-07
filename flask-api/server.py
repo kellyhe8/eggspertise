@@ -6,11 +6,13 @@ import skimage
 from skimage.transform import resize
 
 import numpy as np
+import cv2 #install opencv-python
 import tensorflow as tf
 from tensorflow import keras
 from keras.models import load_model
 
 from flask_cors import CORS
+
 
   
 # creating a Flask app
@@ -18,8 +20,10 @@ app = Flask(__name__)
 CORS(app)
   
 imageSize = 64
-asl_model = load_model("model_1.h5")
+asl_model = load_model("./ASL.h5")
 letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','del','nothing','space', 'undefined']
+
+
 
 # on the terminal type: curl http://127.0.0.1:5000/
 # returns hello world when we use GET.
@@ -35,21 +39,33 @@ def home():
         # topics = request.form.get('topics')
         # print(request.form, request.args)
         # request.args gets from params
-        img = request.form.get("img") # form = body
-        img_list = np.array(eval(img))
-        print("HELLO")
-        img_file = skimage.transform.resize(img_list, (imageSize, imageSize, 3))
+        # print(request)
+        # img = request.form.get("img") # form = body
+        # print(len(request.form))
+        # print(len(img))
+        # print(len(img[0]))
+        # print(len(img[1]))
+        img = request.form.get("img")
+        x = img.split(',')
+        # print(x)
+        y = np.array(x).reshape(200,200,4).astype('float32')
+        z = y[:,:,:3]
+        # y = np.array(x).astype('float32')
+        # print(y)
+        # r_img = cv2.imread('./R_test.jpg')
+
+        img_file = skimage.transform.resize(z, (imageSize, imageSize, 3))
+        img_file = (img_file - np.min(img_file)) / (np.max(img_file) - np.min(img_file))
+        # img_file /= 255
         print(img_file)
         img_arr = np.asarray(img_file).reshape((-1, imageSize, imageSize, 3))
-        # print(img_arr)
 
 
         
         prediction = asl_model.predict(img_arr).argmax(axis=-1)[0]
-        print(prediction)
         letter = letters[prediction]
-
         data = "hello world posts"
+<<<<<<< Updated upstream
         return jsonify({'data': letter})
     if(request.method == 'GET'):
   
@@ -57,6 +73,13 @@ def home():
         return jsonify({'data': data})
 
     
+=======
+        response = jsonify({'data': letter})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+
+        return response
+        
+>>>>>>> Stashed changes
   
   
 # # A simple function to calculate the square of a number

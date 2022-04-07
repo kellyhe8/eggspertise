@@ -44,7 +44,7 @@ function App() {
     const params  = {
         img: "[asdasdasd]"
     };
-    axios.post('http://127.0.0.1:5000', {}, { params: { img: count }})
+    axios.post('http://127.0.0.1:5000', {}, { args: { img : count }})
         .then((res) => {
             console.log(res.data)
         }).catch((error) => {
