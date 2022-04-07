@@ -149,3 +149,7 @@ h3 {
   align-items: center;
   margin-top: 20px;
 }
+
+.line-height-dense {
+  line-height: 2em;
+}

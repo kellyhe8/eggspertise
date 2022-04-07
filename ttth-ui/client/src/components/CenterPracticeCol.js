@@ -1,11 +1,32 @@
 // import LetterInput from "./LetterInput";
-import React, { useEffect, useRef } from "react";
-import * as tf from '@tensorflow/tfjs';
+import React, { useEffect, useRef, useState } from "react";
+import Button from '@mui/material/Button';
+
+// import * as tf from '@tensorflow/tfjs';
 
 import axios from 'axios';
 
 export default function CenterPracticeCol() {
 
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const [answer, setAnswer] = useState(alphabet[Math.floor(Math.random() * 26)]);
+  const [guess, setGuess] = useState("");
+  const [won, setWon] = useState(false);
+  const [points, setPoints] = useState(0);
+
+  const reset = () => {
+    setGuess("");
+    setWon(false);
+    setAnswer(alphabet[Math.floor(Math.random() * 26)]);
+  }
+
+  const checkGuess = (guess) => {
+    // console.log("CHECKING GUESS", guess)
+    setPoints(answer === guess ? points + 1 : points);
+    setWon(answer === guess || won ? true : false);
+    setGuess(guess);
+    return answer === guess;
+  }
   // function imageToTensor(rawImageData){
   //   //Function to convert jpeg image to tensors
   //   // const TO_UINT8ARRAY = true;
@@ -33,7 +54,7 @@ export default function CenterPracticeCol() {
     //     "img": data
     // };
 
-    console.log(imgData)
+    // console.log(imgData)
     var myDataObj = {"img": imgData}
     var formData = new FormData();
 
@@ -42,6 +63,7 @@ export default function CenterPracticeCol() {
     } 
     axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
         .then((res) => {
+            checkGuess(res.data.data)
             console.log(res.data)
         }).catch((error) => {
             console.log(error)
@@ -119,12 +141,18 @@ export default function CenterPracticeCol() {
     <div className="row center-col">
       {/* <h3 >Sign Study Mode:</h3> */}
       <p>Instructions: Sign the following letter.</p>
-      <h3>Sign A</h3>
+      <h3>Sign {answer}</h3>
       <video ref={videoRef} onCanPlay={() => getImage()} />
-        <canvas ref={photoRef} />
-      {/* <LetterInput/> */}
-      <button onClick={handleClick}> Send Img </button>
+        
+      <p className="line-height-dense">score: {points}</p>
+      <p className="line-height-dense">{guess ? `you just signed ${guess}. it was ${won ? `correct` : `wrong`}.` : "sign the letter and lock in!"}</p>
+      <Button onClick={handleClick} variant="outlined"> Send Img </Button>
       
+      <canvas ref={photoRef} />
+      <div><Button disabled={!won} onClick={reset} variant="outlined">next</Button>
+      <Button disabled={won} onClick={reset} variant="outlined">skip</Button></div>
+      
+
     </div>
   );
 }

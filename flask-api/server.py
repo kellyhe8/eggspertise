@@ -6,7 +6,7 @@ import skimage
 from skimage.transform import resize
 
 import numpy as np
-import cv2 #install opencv-python
+# import cv2 #install opencv-python
 import tensorflow as tf
 from tensorflow import keras
 from keras.models import load_model
@@ -57,7 +57,7 @@ def home():
         img_file = skimage.transform.resize(z, (imageSize, imageSize, 3))
         img_file = (img_file - np.min(img_file)) / (np.max(img_file) - np.min(img_file))
         # img_file /= 255
-        print(img_file)
+        # print(img_file)
         img_arr = np.asarray(img_file).reshape((-1, imageSize, imageSize, 3))
 
 
@@ -65,21 +65,11 @@ def home():
         prediction = asl_model.predict(img_arr).argmax(axis=-1)[0]
         letter = letters[prediction]
         data = "hello world posts"
-<<<<<<< Updated upstream
-        return jsonify({'data': letter})
-    if(request.method == 'GET'):
-  
-        data = "hello world get"
-        return jsonify({'data': data})
-
-    
-=======
         response = jsonify({'data': letter})
         response.headers.add('Access-Control-Allow-Origin', '*')
 
         return response
         
->>>>>>> Stashed changes
   
   
 # # A simple function to calculate the square of a number
