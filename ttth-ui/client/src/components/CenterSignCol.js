@@ -71,6 +71,7 @@ export default function CenterSignCol() {
       // var data = photo.toDataURL('image/jpeg');
       var data = ctx.getImageData(0,0,width, height);
       var tensor = imageToTensor(Array.from(data.data));
+      // console.log(Array.from(data.data));
     }, 500);
   };
 
