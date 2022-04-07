@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import * as tf from '@tensorflow/tfjs';
 
+import axios from 'axios';
 
 export default function CenterPracticeCol() {
 
@@ -24,6 +25,29 @@ export default function CenterPracticeCol() {
   //   }
   //   return tf.tensor3d(buffer, [height, width, 3]);
   // }
+
+
+  let request = (imgData) => {
+    // e.preventDefault()
+    // const body  = {
+    //     "img": data
+    // };
+
+    console.log(imgData)
+    var myDataObj = {"img": imgData}
+    var formData = new FormData();
+
+    for (var key in myDataObj) {
+      formData.append(key, myDataObj[key])
+    } 
+    axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
+        .then((res) => {
+            console.log(res.data)
+        }).catch((error) => {
+            console.log(error)
+        });
+  }
+
 
   const videoRef = useRef(null);
   const photoRef = useRef(null);
@@ -55,24 +79,40 @@ export default function CenterPracticeCol() {
       });
   };
 
+  let handleClick = () => {
+    let video = videoRef.current;
+    let photo = photoRef.current;
+    let ctx = photo.getContext("2d");
+
+    const width = 200;
+    const height = 200;
+
+    ctx.drawImage(video, 0, 0, width, height);
+    // var data = photo.toDataURL('image/jpeg');
+    var data = ctx.getImageData(0,0,width, height);
+    var x = Array.from(data.data);
+    console.log(x);
+    request(Array.from(data.data));
+  }
+
   const getImage = () => {
     let video = videoRef.current;
     let photo = photoRef.current;
     let ctx = photo.getContext("2d");
 
-    const width = 64;
-    const height = 64;
-    photo.width = width;
-    photo.height = height;
+    const width = 3;
+    const height = 3;
 
     console.log(photoRef.current);
-    return setInterval(() => {
-      ctx.drawImage(video, 0, 0, width, height);
-      // var data = photo.toDataURL('image/jpeg');
-      var data = ctx.getImageData(0,0,width, height);
-      // var tensor = imageToTensor(Array.from(data.data));
-      // console.log(Array.from(data.data));
-    }, 500);
+    // return setInterval(() => {
+    //   // ctx.drawImage(video, 0, 0, width, height);
+    //   // var data = photo.toDataURL('image/jpeg');
+    //   // var data = ctx.getImageData(0,0,width, height);
+    //   // console.log(data.data)
+    //   // request(data);
+    //   // var tensor = imageToTensor(Array.from(data.data));
+    //   // console.log(Array.from(data.data));
+    // }, 500);
   };
 
   return (
@@ -83,6 +123,7 @@ export default function CenterPracticeCol() {
       <video ref={videoRef} onCanPlay={() => getImage()} />
         <canvas ref={photoRef} />
       {/* <LetterInput/> */}
+      <button onClick={handleClick}> Send Img </button>
       
     </div>
   );
