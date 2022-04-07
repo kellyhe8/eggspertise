@@ -33,7 +33,6 @@ export default function CenterPracticeCol() {
     //     "img": data
     // };
 
-    console.log(imgData)
     var myDataObj = {"img": imgData}
     var formData = new FormData();
 
@@ -42,7 +41,7 @@ export default function CenterPracticeCol() {
     } 
     axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
         .then((res) => {
-            console.log(res.data.data)
+            console.log(res.data)
         }).catch((error) => {
             console.log(error)
         });
@@ -91,7 +90,6 @@ export default function CenterPracticeCol() {
     // var data = photo.toDataURL('image/jpeg');
     var data = ctx.getImageData(0,0,width, height);
     var x = Array.from(data.data);
-    console.log(x);
     request(Array.from(data.data));
   }
 
@@ -103,7 +101,6 @@ export default function CenterPracticeCol() {
     const width = 3;
     const height = 3;
 
-    console.log(photoRef.current);
     // return setInterval(() => {
     //   // ctx.drawImage(video, 0, 0, width, height);
     //   // var data = photo.toDataURL('image/jpeg');
@@ -123,7 +120,6 @@ export default function CenterPracticeCol() {
       <video ref={videoRef} onCanPlay={() => getImage()} />
         <canvas ref={photoRef} />
       {/* <LetterInput/> */}
-        <div> {this.state.guess}</div>
       <button onClick={handleClick}> Send Img </button>
       
     </div>
