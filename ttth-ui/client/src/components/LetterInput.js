@@ -29,9 +29,10 @@ class LetterInput extends React.Component {
     this.setState(state => ({
       input: guess,
       guesses: [...state.guesses, guess],
-      won: this.props.answer === guess,
+      // if they just won or they already won
+      won: this.props.answer === guess || state.won,
       // if they got it wrong, -1 point
-      points: this.props.answer === guess ? state.points += 1 : state.points -= 1
+      points: this.props.answer === guess ? state.points += 1 : state.points
     }))
     // console.log("guessed", guess, this.state.guesses, this.state.won)
   }
@@ -87,7 +88,7 @@ class LetterInput extends React.Component {
           <Button disabled={this.state.guesses.includes("n")} onClick={() => this.checkGuess("n")}>N</Button>
           <Button disabled={this.state.guesses.includes("m")} onClick={() => this.checkGuess("m")}>M</Button>
         </ButtonGroup>
-        <p>{this.state.input ? `you just guessed "${this.state.input}". it was ${this.state.won ? "correct. +1 point for you" : "wrong. you lost 1 point"}.` : "select an answer."} </p>
+        <p>{this.state.input ? `you just guessed "${this.state.input}". it was ${this.state.won ? "correct. +1 point for you" : "wrong try again."}.` : "select an answer."} </p>
         <div>
           <Button disabled={!this.state.won} onClick={() => this.reset()} variant="outlined">next</Button>
           <Button disabled={this.state.won} onClick={() => this.reset()} variant="outlined">skip</Button>
