@@ -47,14 +47,12 @@ export default function CenterPracticeCol() {
   //   return tf.tensor3d(buffer, [height, width, 3]);
   // }
 
-
   let request = (imgData) => {
     // e.preventDefault()
     // const body  = {
     //     "img": data
     // };
 
-    // console.log(imgData)
     var myDataObj = {"img": imgData}
     var formData = new FormData();
 
@@ -113,7 +111,6 @@ export default function CenterPracticeCol() {
     // var data = photo.toDataURL('image/jpeg');
     var data = ctx.getImageData(0,0,width, height);
     var x = Array.from(data.data);
-    console.log(x);
     request(Array.from(data.data));
   }
 
@@ -125,7 +122,6 @@ export default function CenterPracticeCol() {
     const width = 3;
     const height = 3;
 
-    console.log(photoRef.current);
     // return setInterval(() => {
     //   // ctx.drawImage(video, 0, 0, width, height);
     //   // var data = photo.toDataURL('image/jpeg');

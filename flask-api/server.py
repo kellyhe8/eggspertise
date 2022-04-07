@@ -56,8 +56,6 @@ def home():
 
         img_file = skimage.transform.resize(z, (imageSize, imageSize, 3))
         img_file = (img_file - np.min(img_file)) / (np.max(img_file) - np.min(img_file))
-        # img_file /= 255
-        # print(img_file)
         img_arr = np.asarray(img_file).reshape((-1, imageSize, imageSize, 3))
 
 
