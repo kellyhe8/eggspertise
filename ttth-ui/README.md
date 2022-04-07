@@ -7,7 +7,8 @@ This is an application for learning ASL.
     - `cd flask-api`
     - `pip install flask`
     - `pip install tensorflow`
-    - `pip3 install scikit-image`
+    <!-- - `pip3 install scikit-learn` -->
+    - `pip3 install flask_cors`
     - `python3 server.py`
   - for the front end:
     - `cd ttth-ui/client`

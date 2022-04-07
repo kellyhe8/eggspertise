@@ -22,28 +22,39 @@ class LetterInput extends React.Component {
     input: "", // the current input
     guesses: [], // keep track of everything they've guesses
     won: false, // set to true if they get it right, then reset?
+    points: 0
   }
 
   checkGuess = (guess) => {
     this.setState(state => ({
       input: guess,
       guesses: [...state.guesses, guess],
-      won: this.props.answer == guess
+      won: this.props.answer === guess,
+      // if they got it wrong, -1 point
+      points: this.props.answer === guess ? state.points += 1 : state.points -= 1
     }))
-    console.log("guessed", guess, this.state.guesses, this.state.won)
+    // console.log("guessed", guess, this.state.guesses, this.state.won)
   }
 
   reset = () => {
+    // if they're skipping, remove a point
+    if (!this.state.won) {
+      this.setState(state => ({
+        points: state.points -= 1
+      }))
+    }
     this.setState({
       input: "",
       guesses: [],
+      won: false
     })
+    this.props.nextLetter();
   }
 
   render() {
     return (
       <div className='letterinput'>
-        <p>(answer is {this.props.answer})</p>
+        <p>score: {this.state.points}</p>
         <ButtonGroup color="secondary" aria-label="outlined secondary button group">
           <Button disabled={this.state.guesses.includes("q")} onClick={() => this.checkGuess("q")}>Q</Button>
           <Button disabled={this.state.guesses.includes("w")} onClick={() => this.checkGuess("w")}>W</Button>
@@ -76,55 +87,14 @@ class LetterInput extends React.Component {
           <Button disabled={this.state.guesses.includes("n")} onClick={() => this.checkGuess("n")}>N</Button>
           <Button disabled={this.state.guesses.includes("m")} onClick={() => this.checkGuess("m")}>M</Button>
         </ButtonGroup>
-        <p>you just guessed "{this.state.input}". it was {this.state.won.toString()}</p>
+        <p>{this.state.input ? `you just guessed "${this.state.input}". it was ${this.state.won ? "correct" : "wrong"}.` : "select an answer."} </p>
+        <div>
+          <Button disabled={!this.state.won} onClick={() => this.reset()} variant="outlined">next</Button>
+          <Button disabled={this.state.won} onClick={() => this.reset()} variant="outlined">skip</Button>
+        </div>
       </div>
     );
   }
 }
 
 export default LetterInput
-
-// export default function LetterInput(props) {
-//   // const classes = useStyles();
-//   let answer = this.props.answer
-//   console.log("ANSWER", answer)
-
-//   return (
-//     <div className={classes.root}>
-//       <p>answer</p>
-//       <ButtonGroup color="secondary" aria-label="outlined secondary button group">
-//         <Button>Q</Button>
-//         <Button>W</Button>
-//         <Button>E</Button>
-//         <Button>R</Button>
-//         <Button>T</Button>
-//         <Button>Y</Button>
-//         <Button>U</Button>
-//         <Button>I</Button>
-//         <Button>O</Button>
-//         <Button>P</Button>
-//       </ButtonGroup>
-//       <ButtonGroup color="secondary" aria-label="outlined secondary button group">
-//         <Button>A</Button>
-//         <Button>S</Button>
-//         <Button>D</Button>
-//         <Button>F</Button>
-//         <Button>G</Button>
-//         <Button>H</Button>
-//         <Button>J</Button>
-//         <Button>K</Button>
-//         <Button>L</Button>
-//       </ButtonGroup>
-//       <ButtonGroup color="secondary" aria-label="outlined secondary button group">
-//         <Button>Z</Button>
-//         <Button>X</Button>
-//         <Button>C</Button>
-//         <Button>V</Button>
-//         <Button>V</Button>
-//         <Button>B</Button>
-//         <Button>N</Button>
-//         <Button>M</Button>
-//       </ButtonGroup>
-//     </div>
-//   );
-// }

@@ -33,10 +33,15 @@ import z from '../images/alphabet/z.jpeg';
 
 export default function CenterLearnCol() {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  let ind = Math.floor(Math.random() * 26);
-  let answer = alphabet[ind];
-  
+  // let ind = Math.floor(Math.random() * 26);
+  // let answer = alphabet[ind];
   const images = {a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}
+
+  const [answer, setAnswer] = useState(alphabet[Math.floor(Math.random() * 26)]);
+
+  const nextLetter = () => {
+    setAnswer(alphabet[Math.floor(Math.random() * 26)]);
+  }
 
   // const [guessed, addGuess] = useState([]);
   // addGuess(guess => [...guessed, guess])
@@ -70,44 +75,8 @@ export default function CenterLearnCol() {
         width="500" 
         className="img-background">
       </img>
-      <LetterInput answer={answer}/>
+      <LetterInput answer={answer} nextLetter={nextLetter.bind(this)}/>
 
-      {/* <div className='letterinput'>
-        <p>{this.props.answer}</p>
-        <ButtonGroup color="secondary" aria-label="outlined secondary button group">
-          <Button disabled={guessed.includes("q")} onClick={() => checkGuess("q")}>Q</Button>
-          <Button disabled={guessed.includes("w")} onClick={() => checkGuess("w")}>W</Button>
-          <Button disabled={guessed.includes("e")} onClick={() => checkGuess("e")}>E</Button>
-          <Button disabled={guessed.includes("r")} onClick={() => checkGuess("r")}>R</Button>
-          <Button disabled={guessed.includes("t")} onClick={() => checkGuess("t")}>T</Button>
-          <Button disabled={guessed.includes("y")} onClick={() => checkGuess("y")}>Y</Button>
-          <Button disabled={guessed.includes("u")} onClick={() => checkGuess("u")}>U</Button>
-          <Button disabled={guessed.includes("i")} onClick={() => checkGuess("i")}>I</Button>
-          <Button disabled={guessed.includes("o")} onClick={() => checkGuess("o")}>O</Button>
-          <Button disabled={guessed.includes("p")} onClick={() => checkGuess("p")}>P</Button>
-        </ButtonGroup>
-        <ButtonGroup color="secondary" aria-label="outlined secondary button group">
-          <Button disabled={guessed.includes("a")} onClick={() => checkGuess("a")}>A</Button>
-          <Button disabled={guessed.includes("s")} onClick={() => checkGuess("s")}>S</Button>
-          <Button disabled={guessed.includes("d")} onClick={() => checkGuess("d")}>D</Button>
-          <Button disabled={guessed.includes("f")} onClick={() => checkGuess("f")}>F</Button>
-          <Button disabled={guessed.includes("g")} onClick={() => checkGuess("g")}>G</Button>
-          <Button disabled={guessed.includes("h")} onClick={() => checkGuess("h")}>H</Button>
-          <Button disabled={guessed.includes("j")} onClick={() => checkGuess("j")}>J</Button>
-          <Button disabled={guessed.includes("k")} onClick={() => checkGuess("k")}>K</Button>
-          <Button disabled={guessed.includes("l")} onClick={() => checkGuess("l")}>L</Button>
-        </ButtonGroup>
-        <ButtonGroup color="secondary" aria-label="outlined secondary button group">
-          <Button disabled={guessed.includes("z")} onClick={() => checkGuess("z")}>Z</Button>
-          <Button disabled={guessed.includes("x")} onClick={() => checkGuess("x")}>X</Button>
-          <Button disabled={guessed.includes("c")} onClick={() => checkGuess("c")}>C</Button>
-          <Button disabled={guessed.includes("v")} onClick={() => checkGuess("v")}>V</Button>
-          <Button disabled={guessed.includes("b")} onClick={() => checkGuess("b")}>B</Button>
-          <Button disabled={guessed.includes("n")} onClick={() => checkGuess("n")}>N</Button>
-          <Button disabled={guessed.includes("m")} onClick={() => checkGuess("m")}>M</Button>
-        </ButtonGroup>
-        <p>correct: {state.won}</p> */}
-      {/* </div> */}
     </div>
   );
 }

@@ -26,11 +26,6 @@ letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','
 # returns the data that we send when we use POST.
 @app.route('/', methods = ['GET', 'POST'])
 def home():
-    if(request.method == 'GET'):
-  
-        data = "hello world get"
-        return jsonify({'data': data})
-
     if request.method == 'POST':
         # average_time = request.form.get('average_time')
         # choices = request.form.get('choices')
@@ -56,6 +51,12 @@ def home():
 
         data = "hello world posts"
         return jsonify({'data': letter})
+    if(request.method == 'GET'):
+  
+        data = "hello world get"
+        return jsonify({'data': data})
+
+    
   
   
 # # A simple function to calculate the square of a number
