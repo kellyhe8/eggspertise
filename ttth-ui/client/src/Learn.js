@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import LeftNavCol from "./components/LeftNavCol";
-import CenterRecognizeCol from "./components/CenterRecognizeCol";
+import CenterLearnCol from "./components/CenterLearnCol";
 import RightFeedbackCol from "./components/RightFeedbackCol";
 import React from 'react';
 
@@ -12,7 +12,7 @@ export default function Recognize() {
       <Header/>
       <div className="column feed">
         <LeftNavCol/>
-        <CenterRecognizeCol/>
+        <CenterLearnCol/>
         <RightFeedbackCol/>
       </div>
     </>

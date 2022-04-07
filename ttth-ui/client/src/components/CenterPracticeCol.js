@@ -1,29 +1,29 @@
-import LetterInput from "./LetterInput";
+// import LetterInput from "./LetterInput";
 import React, { useEffect, useRef } from "react";
 import * as tf from '@tensorflow/tfjs';
 
 
-export default function CenterSignCol() {
+export default function CenterPracticeCol() {
 
-  function imageToTensor(rawImageData){
-    //Function to convert jpeg image to tensors
-    const TO_UINT8ARRAY = true;
-    // const { width, height, data } = jpeg.decode(rawImageData, TO_UINT8ARRAY);
-    const width = 64;
-    const height = 64;
-    const data = rawImageData;
+  // function imageToTensor(rawImageData){
+  //   //Function to convert jpeg image to tensors
+  //   // const TO_UINT8ARRAY = true;
+  //   // const { width, height, data } = jpeg.decode(rawImageData, TO_UINT8ARRAY);
+  //   const width = 64;
+  //   const height = 64;
+  //   const data = rawImageData;
 
-    // Drop the alpha channel info for mobilenet
-    const buffer = new Uint8Array(width * height * 3);
-    let offset = 0; // offset into original data
-    for (let i = 0; i < buffer.length; i += 3) {
-      buffer[i] = data[offset];
-      buffer[i + 1] = data[offset + 1];
-      buffer[i + 2] = data[offset + 2];
-      offset += 4;
-    }
-    return tf.tensor3d(buffer, [height, width, 3]);
-  }
+  //   // Drop the alpha channel info for mobilenet
+  //   const buffer = new Uint8Array(width * height * 3);
+  //   let offset = 0; // offset into original data
+  //   for (let i = 0; i < buffer.length; i += 3) {
+  //     buffer[i] = data[offset];
+  //     buffer[i + 1] = data[offset + 1];
+  //     buffer[i + 2] = data[offset + 2];
+  //     offset += 4;
+  //   }
+  //   return tf.tensor3d(buffer, [height, width, 3]);
+  // }
 
   const videoRef = useRef(null);
   const photoRef = useRef(null);
@@ -70,7 +70,7 @@ export default function CenterSignCol() {
       ctx.drawImage(video, 0, 0, width, height);
       // var data = photo.toDataURL('image/jpeg');
       var data = ctx.getImageData(0,0,width, height);
-      var tensor = imageToTensor(Array.from(data.data));
+      // var tensor = imageToTensor(Array.from(data.data));
       // console.log(Array.from(data.data));
     }, 500);
   };

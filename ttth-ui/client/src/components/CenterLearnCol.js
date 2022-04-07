@@ -1,8 +1,8 @@
 import LetterInput from "./LetterInput";
 import React, { useState } from 'react';
 
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+// import Button from '@mui/material/Button';
+// import ButtonGroup from '@mui/material/ButtonGroup';
 import a from '../images/alphabet/a.jpeg';
 import b from '../images/alphabet/b.jpeg';
 import c from '../images/alphabet/c.jpeg';
@@ -31,7 +31,7 @@ import y from '../images/alphabet/y.jpeg';
 import z from '../images/alphabet/z.jpeg';
 
 
-export default function CenterRecognizeCol() {
+export default function CenterLearnCol() {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   let ind = Math.floor(Math.random() * 26);
   let answer = alphabet[ind];

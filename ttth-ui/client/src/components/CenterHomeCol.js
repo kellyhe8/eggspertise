@@ -8,13 +8,13 @@ export default function CenterHomeCol() {
 
   return (
     <div className="row center-col">
-      <p className="code">*HOME*</p>
+      <p className="code">Welcome to Talk to the Hand!</p>
       <img src={homepageImg}
         alt="alphabet-cheat-sheet" 
         width="500" 
         className="img-background">
       </img>
-      <LetterInput/>
+      {/* <LetterInput/> */}
     </div>
   );
 }

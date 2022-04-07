@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import LeftNavCol from "./components/LeftNavCol";
-import CenterSignCol from "./components/CenterSignCol";
+import CenterPracticeCol from "./components/CenterPracticeCol";
 import RightFeedbackCol from "./components/RightFeedbackCol";
 import React from 'react';
 
@@ -12,7 +12,7 @@ export default function Sign() {
       <Header/>
       <div className="column feed">
         <LeftNavCol/>
-        <CenterSignCol/>
+        <CenterPracticeCol/>
         <RightFeedbackCol/>
       </div>
     </>

@@ -2,8 +2,8 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
 import Home from './Home';
-import Recognize from './Recognize';
-import Sign from './Sign';
+import Recognize from './Learn';
+import Sign from './Practice';
 
 import axios from 'axios';
 
@@ -65,8 +65,8 @@ function App() {
             {/* <hr/> */}
             <Route path="/" element={<Home />} />
             {/* <Route exact path="/" element={<Home/>} /> */}
-            <Route path="/recognize" element={<Recognize/>} />
-            <Route path="/sign" element={<Sign/>} />
+            <Route path="/learn" element={<Recognize/>} />
+            <Route path="/practice" element={<Sign/>} />
             <Route path="*" element={<Home/>}/>
           </Routes>
           {/* <Home/>

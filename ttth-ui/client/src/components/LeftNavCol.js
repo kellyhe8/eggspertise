@@ -22,10 +22,10 @@ export default function LeftNavCol() {
   // let state = {  } 
   const location = useLocation(); 
   let initState = "home";
-  if (location.pathname == "/recognize") {
-    initState = "recognize";
-  } else if (location.pathname == "/sign") {
-    initState = "sign";
+  if (location.pathname == "/learn") {
+    initState = "learn";
+  } else if (location.pathname == "/practice") {
+    initState = "practice";
   }
   const [value, setValue] = React.useState(initState);
   
@@ -46,8 +46,8 @@ export default function LeftNavCol() {
         orientation="vertical"
       >
         <CustomTab component={Link} to="/" value="home" label="home" />
-        <CustomTab component={Link} to="/recognize" value="recognize" label="recognize" />
-        <CustomTab component={Link} to="/sign" value="sign" label="sign" />
+        <CustomTab component={Link} to="/learn" value="learn" label="learn" />
+        <CustomTab component={Link} to="/practice" value="practice" label="practice" />
       </Tabs>
       // {/* <p className="code">Study Modes</p> */}
     //   <ToggleButtonGroup
