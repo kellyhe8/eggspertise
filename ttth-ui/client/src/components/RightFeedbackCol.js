@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from "react";
 // import ViewListIcon from '@mui/icons-material/ViewList';
 // import ViewModuleIcon from '@mui/icons-material/ViewModule';
 // import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
@@ -9,9 +9,28 @@ export default function RightFeedbackCol() {
   // let state = { 
   //   message: ""
   //  } 
-    return (<div className="right-col">
+  const [feedback, setFeedback] = useState(["good job"]);
+  
+  const handleResetFeedback = () => {
+    setFeedback([])
+  }
+
+  const handleAddFeedback = (fb) => {
+    setFeedback(fb => [...feedback, fb])
+  }
+
+  let array = feedback.map(f => (<li className="feedback-list">{f}</li>));
+  // for(let i = 0; i < feedback.length; i++) {
+  //   array.push(
+  //     <li className="feedback-list">{feedback[i]}</li>
+  //   );
+  // }
+  // console.log(array);
+
+  return (
+    <div className="right-col">
       <p>Feedback</p>
-      {/* <p>{state}</p> */}
+      {array}
     </div>);
   }
 // }

@@ -87,7 +87,7 @@ class LetterInput extends React.Component {
           <Button disabled={this.state.guesses.includes("n")} onClick={() => this.checkGuess("n")}>N</Button>
           <Button disabled={this.state.guesses.includes("m")} onClick={() => this.checkGuess("m")}>M</Button>
         </ButtonGroup>
-        <p>{this.state.input ? `you just guessed "${this.state.input}". it was ${this.state.won ? "correct" : "wrong"}.` : "select an answer."} </p>
+        <p>{this.state.input ? `you just guessed "${this.state.input}". it was ${this.state.won ? "correct. +1 point for you" : "wrong. you lost 1 point"}.` : "select an answer."} </p>
         <div>
           <Button disabled={!this.state.won} onClick={() => this.reset()} variant="outlined">next</Button>
           <Button disabled={this.state.won} onClick={() => this.reset()} variant="outlined">skip</Button>

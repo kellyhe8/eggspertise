@@ -63,6 +63,18 @@ video {
   }
 }
 
+.feedback-list {
+  margin: 0;
+  color: var(--red);
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  font-size: 16px;
+  /* overflow-wrap: break-word; */
+  line-height: 1.5em;
+  /* list-style-position: inside;
+  list-style-type: circle; */
+}
+
 p {
   margin: 0;
   color: var(--blue);
@@ -119,7 +131,7 @@ h3 {
 .center-col {
   padding: 0 40px 0 20px;
   /* border-left: 0.px solid var(--green); */
-  border-right: 0.5px solid var(--green);
+  border-right: 2px solid var(--green);
   min-width: 580px;
 }
 
