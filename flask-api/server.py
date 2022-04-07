@@ -65,21 +65,11 @@ def home():
         prediction = asl_model.predict(img_arr).argmax(axis=-1)[0]
         letter = letters[prediction]
         data = "hello world posts"
-<<<<<<< Updated upstream
-        return jsonify({'data': letter})
-    if(request.method == 'GET'):
-  
-        data = "hello world get"
-        return jsonify({'data': data})
-
-    
-=======
         response = jsonify({'data': letter})
         response.headers.add('Access-Control-Allow-Origin', '*')
 
         return response
         
->>>>>>> Stashed changes
   
   
 # # A simple function to calculate the square of a number

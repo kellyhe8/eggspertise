@@ -6,6 +6,7 @@ import axios from 'axios';
 
 export default function CenterPracticeCol() {
 
+
   // function imageToTensor(rawImageData){
   //   //Function to convert jpeg image to tensors
   //   // const TO_UINT8ARRAY = true;
@@ -26,7 +27,6 @@ export default function CenterPracticeCol() {
   //   return tf.tensor3d(buffer, [height, width, 3]);
   // }
 
-
   let request = (imgData) => {
     // e.preventDefault()
     // const body  = {
@@ -42,7 +42,7 @@ export default function CenterPracticeCol() {
     } 
     axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
         .then((res) => {
-            console.log(res.data)
+            console.log(res.data.data)
         }).catch((error) => {
             console.log(error)
         });
@@ -123,6 +123,7 @@ export default function CenterPracticeCol() {
       <video ref={videoRef} onCanPlay={() => getImage()} />
         <canvas ref={photoRef} />
       {/* <LetterInput/> */}
+        <div> {this.state.guess}</div>
       <button onClick={handleClick}> Send Img </button>
       
     </div>
