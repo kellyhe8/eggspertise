@@ -1,19 +1,17 @@
 import Header from "./components/Header";
 import LeftNavCol from "./components/LeftNavCol";
-import CenterHomeCol from "./components/CenterHomeCol";
-import RightFeedbackCol from "./components/RightFeedbackCol";
+import CenterPracticeCol from "./components/CenterPracticeCol";
 import React from 'react';
 
 
-export default function Home() {
+export default function Sign() {
 
   return (
     <>
       <Header/>
       <div className="column feed">
         <LeftNavCol/>
-        <CenterHomeCol/>
-        <RightFeedbackCol/>
+        <CenterPracticeCol/>
       </div>
     </>
   );
