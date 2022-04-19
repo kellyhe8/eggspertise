@@ -5,11 +5,11 @@ import React from 'react';
 
 
 export default function Home() {
-
+  
   return (
     <>
       <Header/>
-      <div className="column feed">
+      <div className="column flex-row-center">
         <LeftNavCol/>
         <CenterHomeCol/>
       </div>

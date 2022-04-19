@@ -1,11 +1,11 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import Home from './Home';
 import Recognize from './Learn';
 import Sign from './Practice';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 
 // import * as tf from '@tensorflow/tfjs';
@@ -37,21 +37,21 @@ const theme = createTheme({
 
 function App() {
 
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   
-  let request = () => {
-    // e.preventDefault()
-    const params  = {
-        img: "[asdasdasd]"
-    };
-    axios.post('http://127.0.0.1:5000', {}, { args: { img : count }})
-        .then((res) => {
-            console.log(res.data)
-        }).catch((error) => {
-            console.log(error)
-        });
-    setCount(count + 1)
-}
+  // let request = () => {
+  //   e.preventDefault()
+  //   const params  = {
+  //       img: "[asdasdasd]"
+  //   };
+  //   axios.post('http://127.0.0.1:5000', {}, { args: { img : count }})
+  //       .then((res) => {
+  //           console.log(res.data)
+  //       }).catch((error) => {
+  //           console.log(error)
+  //       });
+  //   setCount(count + 1)
+  // }
   
   return (
     <div>

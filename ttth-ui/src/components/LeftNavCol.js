@@ -22,9 +22,9 @@ export default function LeftNavCol() {
   // let state = {  } 
   const location = useLocation(); 
   let initState = "home";
-  if (location.pathname == "/learn") {
+  if (location.pathname === "/learn") {
     initState = "learn";
-  } else if (location.pathname == "/practice") {
+  } else if (location.pathname === "/practice") {
     initState = "practice";
   }
   const [value, setValue] = React.useState(initState);

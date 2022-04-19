@@ -4,14 +4,17 @@ import CenterPracticeCol from "./components/CenterPracticeCol";
 import React from 'react';
 
 
-export default function Sign() {
+export default function Practice() {
+  const [toggled, setToggled] = React.useState(true);
+
+  const toggleHint = () => setToggled(!toggled);
 
   return (
     <>
       <Header/>
-      <div className="column feed">
+      <div className="column flex-row-center">
         <LeftNavCol/>
-        <CenterPracticeCol/>
+        <CenterPracticeCol toggled={toggled} toggleHint={toggleHint}/>
       </div>
     </>
   );

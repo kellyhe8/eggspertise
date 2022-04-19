@@ -1,12 +1,13 @@
 // import LetterInput from "./LetterInput";
 import React, { useEffect, useRef, useState } from "react";
 import Button from '@mui/material/Button';
+import HintFeature from './HintFeature';
 
 // import * as tf from '@tensorflow/tfjs';
 
 import axios from 'axios';
 
-export default function CenterPracticeCol() {
+export default function CenterPracticeCol(props) {
 
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const [answer, setAnswer] = useState(alphabet[Math.floor(Math.random() * 26)]);
@@ -110,17 +111,17 @@ export default function CenterPracticeCol() {
     ctx.drawImage(video, 0, 0, width, height);
     // var data = photo.toDataURL('image/jpeg');
     var data = ctx.getImageData(0,0,width, height);
-    var x = Array.from(data.data);
+    // var x = Array.from(data.data);
     request(Array.from(data.data));
   }
 
   const getImage = () => {
-    let video = videoRef.current;
-    let photo = photoRef.current;
-    let ctx = photo.getContext("2d");
+    // let video = videoRef.current;
+    // let photo = photoRef.current;
+    // let ctx = photo.getContext("2d");
 
-    const width = 3;
-    const height = 3;
+    // const width = 3;
+    // const height = 3;
 
     // return setInterval(() => {
     //   // ctx.drawImage(video, 0, 0, width, height);
@@ -136,19 +137,23 @@ export default function CenterPracticeCol() {
   return (
     <div className="row center-col">
       {/* <h3 >Sign Study Mode:</h3> */}
-      <p>Instructions: Sign the following letter.</p>
+      {/* <p>Instructions: Sign the following letter and lock in!</p> */}
+      <p className="line-height-dense">{guess ? `you just signed ${guess}. it was ${won ? `correct` : `wrong`}.` : "Instructions: Sign the following letter and lock in!"}</p>
+      
+      <div className="pink-background row flex-row-center">
       <h3>Sign {answer}</h3>
-      <video ref={videoRef} onCanPlay={() => getImage()} />
-        
-      <p className="line-height-dense">score: {points}</p>
-      <p className="line-height-dense">{guess ? `you just signed ${guess}. it was ${won ? `correct` : `wrong`}.` : "sign the letter and lock in!"}</p>
-      <Button onClick={handleClick} variant="outlined"> Send Img </Button>
-      
+        <div className="video-box">
+          <video ref={videoRef} onCanPlay={() => getImage()} />  
+          <Button onClick={handleClick} variant="contained"> Send Img </Button>  
+          <p className="line-height-dense">score: {points}</p>
+        </div>
+        <div className="control-buttons">
+          <Button disabled={!won} onClick={reset} variant="contained">next</Button>
+          <Button disabled={won} onClick={reset} variant="contained">skip</Button>
+        </div>
+      </div>
+      <HintFeature toggled={props.toggled} toggleHint={props.toggleHint}/>
       <canvas ref={photoRef} />
-      <div><Button disabled={!won} onClick={reset} variant="outlined">next</Button>
-      <Button disabled={won} onClick={reset} variant="outlined">skip</Button></div>
-      
-
     </div>
   );
 }

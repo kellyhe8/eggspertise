@@ -5,13 +5,16 @@ import React from 'react';
 
 
 export default function Recognize() {
+  const [toggled, setToggled] = React.useState(false);
+
+  const toggleHint = () => setToggled(!toggled);
 
   return (
     <>
       <Header/>
       <div className="column feed">
         <LeftNavCol/>
-        <CenterLearnCol/>
+        <CenterLearnCol toggled={toggled} toggleHint={toggleHint}/>
       </div>
     </>
   );
