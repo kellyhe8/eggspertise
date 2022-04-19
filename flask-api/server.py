@@ -13,6 +13,8 @@ from keras.models import load_model
 
 from flask_cors import CORS
 
+import json
+
 
   
 # creating a Flask app
@@ -21,7 +23,8 @@ CORS(app)
   
 imageSize = 64
 asl_model = load_model("./ASL.h5")
-letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','del','nothing','space', 'undefined']
+asl_mediapipe_model = load_model("./model_2.h5")
+letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
 
 
@@ -45,24 +48,31 @@ def home():
         # print(len(img))
         # print(len(img[0]))
         # print(len(img[1]))
-        img = request.form.get("img")
-        x = img.split(',')
-        # print(x)
-        y = np.array(x).reshape(200,200,4).astype('float32')
-        z = y[:,:,:3]
-        # y = np.array(x).astype('float32')
-        # print(y)
-        # r_img = cv2.imread('./R_test.jpg')
+        print(request.json)
+        print('--')
+        joint_data = request.json
+        joint_matrix = []
+        for joint in joint_data.keys():
+            x, y, z = joint_data[joint]['x'], joint_data[joint]['y'], joint_data[joint]['z']
+            joint_matrix.append(np.array([x,y,z]))
 
-        img_file = skimage.transform.resize(z, (imageSize, imageSize, 3))
-        img_file = (img_file - np.min(img_file)) / (np.max(img_file) - np.min(img_file))
-        img_arr = np.asarray(img_file).reshape((-1, imageSize, imageSize, 3))
+        input = np.array(joint_matrix).reshape(-1,21,3)
 
-
-        
-        prediction = asl_model.predict(img_arr).argmax(axis=-1)[0]
+        prediction = asl_mediapipe_model.predict(input).argmax(axis=-1)[0]
         letter = letters[prediction]
-        data = "hello world posts"
+        print(letter)
+        # for i in range(len(img)):
+        #     print(img[i])
+        # x = img.split(',')
+        # y = np.array(x).reshape(200,200,4).astype('float32')
+        # z = y[:,:,:3]
+
+        # img_file = skimage.transform.resize(z, (imageSize, imageSize, 3))
+        # img_arr = np.asarray(img_file).reshape((-1, imageSize, imageSize, 3))
+        
+        # prediction = asl_model.predict(img_arr).argmax(axis=-1)[0]
+        # letter = letters[prediction]
+        # response = jsonify({'data': letter})
         response = jsonify({'data': letter})
         response.headers.add('Access-Control-Allow-Origin', '*')
 

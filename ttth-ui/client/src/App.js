@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Home from './Home';
 import Recognize from './Learn';
 import Sign from './Practice';
+import MediaPipe from './MediaPipe';
 
 import axios from 'axios';
 
@@ -67,6 +68,7 @@ function App() {
             {/* <Route exact path="/" element={<Home/>} /> */}
             <Route path="/learn" element={<Recognize/>} />
             <Route path="/practice" element={<Sign/>} />
+            <Route path="/mediapipe" element={<MediaPipe/>}/>
             <Route path="*" element={<Home/>}/>
           </Routes>
           {/* <Home/>
