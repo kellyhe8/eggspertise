@@ -23,10 +23,10 @@ export default function CenterPracticeCol(props) {
 
   const checkGuess = (guess) => {
     // console.log("CHECKING GUESS", guess)
-    setPoints(answer === guess ? points + 1 : points);
-    setWon(answer === guess || won ? true : false);
+    setPoints(answer.toUpperCase() === guess.toUpperCase() ? points + 1 : points);
+    setWon(answer.toUpperCase() === guess.toUpperCase() || won ? true : false);
     setGuess(guess);
-    return answer === guess;
+    return answer.toUpperCase() === guess.toUpperCase();
   }
   // function imageToTensor(rawImageData){
   //   //Function to convert jpeg image to tensors
@@ -63,9 +63,9 @@ export default function CenterPracticeCol(props) {
     axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
         .then((res) => {
             checkGuess(res.data.data)
-            console.log(res.data)
+            // console.log(res.data)
         }).catch((error) => {
-            console.log(error)
+            // console.log(error)
         });
   }
 
@@ -152,7 +152,7 @@ export default function CenterPracticeCol(props) {
           <Button disabled={won} onClick={reset} variant="contained">skip</Button>
         </div>
       </div>
-      <HintFeature toggled={props.toggled} toggleHint={props.toggleHint}/>
+      <HintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
       <canvas ref={photoRef} />
     </div>
   );

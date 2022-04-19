@@ -56,36 +56,36 @@ class LetterInput extends React.Component {
     return (
       <div className="letterinput" >
         <ButtonGroup disableElevation  color="secondary"  variant="contained" size="large" aria-label="outlined button group">
-          <Button disabled={this.props.guesses.includes("q")} onClick={() => this.props.checkGuess("q")}>Q</Button>
-          <Button disabled={this.props.guesses.includes("w")} onClick={() => this.props.checkGuess("w")}>W</Button>
-          <Button disabled={this.props.guesses.includes("e")} onClick={() => this.props.checkGuess("e")}>E</Button>
-          <Button disabled={this.props.guesses.includes("r")} onClick={() => this.props.checkGuess("r")}>R</Button>
-          <Button disabled={this.props.guesses.includes("t")} onClick={() => this.props.checkGuess("t")}>T</Button>
-          <Button disabled={this.props.guesses.includes("y")} onClick={() => this.props.checkGuess("y")}>Y</Button>
-          <Button disabled={this.props.guesses.includes("u")} onClick={() => this.props.checkGuess("u")}>U</Button>
-          <Button disabled={this.props.guesses.includes("i")} onClick={() => this.props.checkGuess("i")}>I</Button>
-          <Button disabled={this.props.guesses.includes("o")} onClick={() => this.props.checkGuess("o")}>O</Button>
-          <Button disabled={this.props.guesses.includes("p")} onClick={() => this.props.checkGuess("p")}>P</Button>
+          <Button disabled={this.props.guesses.includes("Q")} onClick={() => this.props.checkGuess("Q")}>Q</Button>
+          <Button disabled={this.props.guesses.includes("W")} onClick={() => this.props.checkGuess("W")}>W</Button>
+          <Button disabled={this.props.guesses.includes("E")} onClick={() => this.props.checkGuess("E")}>E</Button>
+          <Button disabled={this.props.guesses.includes("R")} onClick={() => this.props.checkGuess("R")}>R</Button>
+          <Button disabled={this.props.guesses.includes("T")} onClick={() => this.props.checkGuess("T")}>T</Button>
+          <Button disabled={this.props.guesses.includes("Y")} onClick={() => this.props.checkGuess("Y")}>Y</Button>
+          <Button disabled={this.props.guesses.includes("U")} onClick={() => this.props.checkGuess("U")}>U</Button>
+          <Button disabled={this.props.guesses.includes("I")} onClick={() => this.props.checkGuess("I")}>I</Button>
+          <Button disabled={this.props.guesses.includes("O")} onClick={() => this.props.checkGuess("O")}>O</Button>
+          <Button disabled={this.props.guesses.includes("P")} onClick={() => this.props.checkGuess("P")}>P</Button>
         </ButtonGroup>
         <ButtonGroup disableElevation  color="secondary" variant="contained" size="large" aria-label="outlined button group">
-          <Button disabled={this.props.guesses.includes("a")} onClick={() => this.props.checkGuess("a")}>A</Button>
-          <Button disabled={this.props.guesses.includes("s")} onClick={() => this.props.checkGuess("s")}>S</Button>
-          <Button disabled={this.props.guesses.includes("d")} onClick={() => this.props.checkGuess("d")}>D</Button>
-          <Button disabled={this.props.guesses.includes("f")} onClick={() => this.props.checkGuess("f")}>F</Button>
-          <Button disabled={this.props.guesses.includes("g")} onClick={() => this.props.checkGuess("g")}>G</Button>
-          <Button disabled={this.props.guesses.includes("h")} onClick={() => this.props.checkGuess("h")}>H</Button>
-          <Button disabled={this.props.guesses.includes("j")} onClick={() => this.props.checkGuess("j")}>J</Button>
-          <Button disabled={this.props.guesses.includes("k")} onClick={() => this.props.checkGuess("k")}>K</Button>
-          <Button disabled={this.props.guesses.includes("l")} onClick={() => this.props.checkGuess("l")}>L</Button>
+          <Button disabled={this.props.guesses.includes("A")} onClick={() => this.props.checkGuess("A")}>A</Button>
+          <Button disabled={this.props.guesses.includes("S")} onClick={() => this.props.checkGuess("S")}>S</Button>
+          <Button disabled={this.props.guesses.includes("D")} onClick={() => this.props.checkGuess("D")}>D</Button>
+          <Button disabled={this.props.guesses.includes("F")} onClick={() => this.props.checkGuess("F")}>F</Button>
+          <Button disabled={this.props.guesses.includes("G")} onClick={() => this.props.checkGuess("G")}>G</Button>
+          <Button disabled={this.props.guesses.includes("H")} onClick={() => this.props.checkGuess("H")}>H</Button>
+          <Button disabled={this.props.guesses.includes("J")} onClick={() => this.props.checkGuess("J")}>J</Button>
+          <Button disabled={this.props.guesses.includes("K")} onClick={() => this.props.checkGuess("K")}>K</Button>
+          <Button disabled={this.props.guesses.includes("L")} onClick={() => this.props.checkGuess("L")}>L</Button>
         </ButtonGroup>
         <ButtonGroup disableElevation  color="secondary" variant="contained" size="large" aria-label="outlined button group">
-          <Button disabled={this.props.guesses.includes("z")} onClick={() => this.props.checkGuess("z")}>Z</Button>
-          <Button disabled={this.props.guesses.includes("x")} onClick={() => this.props.checkGuess("x")}>X</Button>
-          <Button disabled={this.props.guesses.includes("c")} onClick={() => this.props.checkGuess("c")}>C</Button>
-          <Button disabled={this.props.guesses.includes("v")} onClick={() => this.props.checkGuess("v")}>V</Button>
-          <Button disabled={this.props.guesses.includes("b")} onClick={() => this.props.checkGuess("b")}>B</Button>
-          <Button disabled={this.props.guesses.includes("n")} onClick={() => this.props.checkGuess("n")}>N</Button>
-          <Button disabled={this.props.guesses.includes("m")} onClick={() => this.props.checkGuess("m")}>M</Button>
+          <Button disabled={this.props.guesses.includes("Z")} onClick={() => this.props.checkGuess("Z")}>Z</Button>
+          <Button disabled={this.props.guesses.includes("X")} onClick={() => this.props.checkGuess("X")}>X</Button>
+          <Button disabled={this.props.guesses.includes("C")} onClick={() => this.props.checkGuess("C")}>C</Button>
+          <Button disabled={this.props.guesses.includes("V")} onClick={() => this.props.checkGuess("V")}>V</Button>
+          <Button disabled={this.props.guesses.includes("B")} onClick={() => this.props.checkGuess("B")}>B</Button>
+          <Button disabled={this.props.guesses.includes("N")} onClick={() => this.props.checkGuess("N")}>N</Button>
+          <Button disabled={this.props.guesses.includes("M")} onClick={() => this.props.checkGuess("M")}>M</Button>
         </ButtonGroup>
         <div className="control-buttons">
           <Button disabled={!this.props.won} onClick={() => this.props.reset()} variant="contained">next</Button>

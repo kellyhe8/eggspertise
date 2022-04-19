@@ -103,6 +103,8 @@ h3 {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
   font-size: calc(2vmin);
+  /* word-break: break-all;
+  display: inline; */
 }
 
 .column {
