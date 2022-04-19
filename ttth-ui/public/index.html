@@ -30,9 +30,14 @@
     <script src="//js.leapmotion.com/leap-0.6.3.min.js"></script>
     <script src="//js.leapmotion.com/leap-0.6.3.js"></script>
 
+    <!-- Media Pipe -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
 
 
-    <script>
+    <!-- <script>
 
       // to make working with angles easy
       window.TO_RAD = Math.PI / 180;
@@ -62,19 +67,14 @@
         font-size: 2em;
         font-family: Helvetica;
       }
-    </style>
+    </style> -->
 
 
-    <!-- <script type="text/javascript" src="lib/leap.min.js"></script>
-    <script type="text/javascript" src="lib/leap-plugins.min.js"></script> -->
     <title>Talk to the Hand</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root" ></div>
-    <div id="out"></div>
-    <div id="container" data-title="Hesllo" data-name="World"></div>
-
 
     <!--
       This HTML file is a template.
