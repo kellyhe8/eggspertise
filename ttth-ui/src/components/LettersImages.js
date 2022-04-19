@@ -3,7 +3,6 @@
 function importAll(r) {
   const images = [];
   r.keys().forEach((item, index) => { 
-    // console.log(item, index);
     images.push(r(item))  
   });
   return images;
@@ -12,12 +11,9 @@ function importAll(r) {
 function importAllMap(r) {
   const images = {};
   r.keys().forEach((item, index) => { 
-    // console.log(item, index);
-    // images.push(r(item))
     images[item.replace('./', '').replace('.jpeg','')] = r(item); 
   
   });
-  // console.log("LETER",images);
   return images;
 }
 

@@ -29,53 +29,23 @@ const theme = createTheme({
 });
 
 function App() {
-
-  // const [count, setCount] = useState(0);
-  
-  // let request = () => {
-  //   e.preventDefault()
-  //   const params  = {
-  //       img: "[asdasdasd]"
-  //   };
-  //   axios.post('http://127.0.0.1:5000', {}, { args: { img : count }})
-  //       .then((res) => {
-  //           console.log(res.data)
-  //       }).catch((error) => {
-  //           console.log(error)
-  //       });
-  //   setCount(count + 1)
-  // }
   
   return (
     <div>
       <Router>
           <div className="App">
         <ThemeProvider theme={theme}>
-        {/* <header className="App-header"> */}
-        {/* <Header/> */}
           <Routes>
             
-            {/* <hr/> */}
             <Route path="/" element={<Home />} />
-            {/* <Route exact path="/" element={<Home/>} /> */}
             <Route path="/learn" element={<Recognize/>} />
             <Route path="/practice" element={<Sign/>} />
-            {/* <Route path="/mediapipe" element={<MediaPipe/>}/> */}
             <Route path="*" element={<Home/>}/>
           </Routes>
-          {/* <Home/>
-          <Recognize/>
-          <Sign/> */}
-          {/* <button onClick={request}>request</button>
-          <p>requested {count} times</p> */}
           
-        {/* </header> */}
         </ThemeProvider>
       </div>
       </Router>
-        {/* <video ref={videoRef} onCanPlay={() => getImage()} />
-        <canvas ref={photoRef} /> */}
-
     </div>
   );
 }

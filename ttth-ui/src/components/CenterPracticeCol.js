@@ -33,7 +33,6 @@ export default function CenterPracticeCol(props) {
   }
 
   const checkGuess = (guess) => {
-    // console.log("CHECKING GUESS", guess)
     setPoints(answer.toUpperCase() === guess.toUpperCase() ? points + 1 : points);
     setWon(answer.toUpperCase() === guess.toUpperCase() || won ? true : false);
     setGuess(guess);
@@ -53,11 +52,6 @@ export default function CenterPracticeCol(props) {
   
 
   let request = (jointData) => {
-    // e.preventDefault()
-    // const body  = {
-    //     "img": data
-    // };
-
     var myDataObj = {"img":jointData};
     var formData = new FormData();
 
@@ -69,9 +63,9 @@ export default function CenterPracticeCol(props) {
 
         .then((res) => {
             checkGuess(res.data.data)
-            console.log(res.data)
+            // console.log(res.data)
         }).catch((error) => {
-            console.log(error)
+            console.log("ERROR", error)
         });
   }
 
@@ -114,7 +108,8 @@ export default function CenterPracticeCol(props) {
     ) {
       camera = new Camera(webcamRef.current.video, {
         onFrame: async () => {
-          await hands.send({ image: webcamRef.current.video });
+          if (webcamRef.current) 
+            await hands.send({ image: webcamRef.current.video });
         },
         width: 600,
         height: 400,
@@ -151,7 +146,6 @@ export default function CenterPracticeCol(props) {
       <div className="pink-background row flex-row-center">
       <h3>Sign {answer}</h3>
         <div className="video-box">
-
         <Webcam
           audio={false}
           width={600}
@@ -164,15 +158,8 @@ export default function CenterPracticeCol(props) {
           videoConstraints={videoConstraints}
           style={{display: "none"}}
         />
-        <canvas
-          ref={canvasRef}
-          style={{
-            width: 600,
-            height: 400
-          }}
-        />
+        <canvas ref={canvasRef} style={{width: 600,height: 400}}/>
 
-          {/* <video ref={videoRef} onCanPlay={() => getImage()} />   */}
           <Button onClick={toggleSendFrame} variant="contained"> Send Img </Button>  
           <p className="line-height-dense">Score: {points}</p>
         </div>
@@ -182,7 +169,6 @@ export default function CenterPracticeCol(props) {
         </div>
       </div>
       <HintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
-      {/* <canvas ref={photoRef} /> */}
     </div>
   );
 }

@@ -19,7 +19,6 @@ export default function CenterLearnCol(props) {
   }
 
   const checkGuess = (guess) => {
-    // console.log("CHECKING GUESS", guess)
     setScore(answer.toUpperCase() === guess.toUpperCase() ? score + 1 : score);
     setWon(answer.toUpperCase() === guess.toUpperCase() || won ? true : false);
     setGuess(guess);
