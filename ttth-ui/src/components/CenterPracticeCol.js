@@ -20,7 +20,6 @@ export default function CenterPracticeCol(props) {
   }
 
   const checkGuess = (guess) => {
-    // console.log("CHECKING GUESS", guess)
     setPoints(answer.toUpperCase() === guess.toUpperCase() ? points + 1 : points);
     setWon(answer.toUpperCase() === guess.toUpperCase() || won ? true : false);
     setGuess(guess);
