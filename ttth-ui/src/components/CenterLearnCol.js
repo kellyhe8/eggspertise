@@ -38,10 +38,10 @@ export default function CenterLearnCol(props) {
 
   return (
     <div className="row center-col">
-      <p>Say the letter aloud or select the answer below.</p>
+      <p className="line-height-dense">Say the letter aloud or select the answer below.</p>
 
       <div className="pink-background row flex-row-center">
-      <h3 className="line-height-dense">{guess ? `You just guessed "${guess}". It was ${won ? "correct. +1 point for you" : "wrong try again"}.` : "Select an answer."} </h3>
+      <h3 className="line-height-dense feedback">{guess ? `You just guessed "${guess}". It was ${won ? "correct. +1 point for you" : "wrong try again"}.` : "Select an answer."} </h3>
 
         <div className="video-box">
           <img src={LearnImages[answer]} 

@@ -171,3 +171,7 @@ h3 {
    align-items: center;
    /* justify-content: center; */
 }
+
+.feedback {
+  color: var(--red);
+}
