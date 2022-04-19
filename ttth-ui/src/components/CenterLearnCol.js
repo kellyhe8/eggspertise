@@ -1,5 +1,7 @@
-import LetterInput from "./LetterInput";
 import React, { useState } from 'react';
+
+import LetterInput from "./LetterInput";
+import HintFeature from './HintFeature';
 
 // import Button from '@mui/material/Button';
 // import ButtonGroup from '@mui/material/ButtonGroup';
@@ -31,16 +33,44 @@ import y from '../images/alphabet/y.jpeg';
 import z from '../images/alphabet/z.jpeg';
 
 
-export default function CenterLearnCol() {
+export default function CenterLearnCol(props) {
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
   // let ind = Math.floor(Math.random() * 26);
   // let answer = alphabet[ind];
   const images = {a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z}
 
   const [answer, setAnswer] = useState(alphabet[Math.floor(Math.random() * 26)]);
+  const [guess, setGuess] = useState("");
+  const [guesses, setGuesses] = useState([]);
+  const [won, setWon] = useState(false);
+  const [score, setScore] = useState(0);
 
   const nextLetter = () => {
     setAnswer(alphabet[Math.floor(Math.random() * 26)]);
+  }
+
+  const checkGuess = (guess) => {
+    // console.log("CHECKING GUESS", guess)
+    setScore(answer === guess ? score + 1 : score);
+    setWon(answer === guess || won ? true : false);
+    setGuess(guess);
+    setGuesses([...guesses, guess])
+    return answer === guess;
+  }
+  
+  const reset = () => {
+    if (!won) {
+      setScore(score - 1)
+    }
+    setGuess("");
+    setGuesses([]);
+    setWon(false);
+    // setState({
+    //   input: "",
+    //   guesses: [],
+    //   won: false
+    // })
+    nextLetter();
   }
 
   // const [guessed, addGuess] = useState([]);
@@ -70,12 +100,30 @@ export default function CenterLearnCol() {
     <div className="row center-col">
       <p>Say the letter aloud or select the answer below.</p>
 
-      <img src={images[answer]} 
-        alt="asl-letter-recognition" 
-        width="500" 
-        className="img-background">
-      </img>
-      <LetterInput answer={answer} nextLetter={nextLetter.bind(this)}/>
+      <div className="pink-background row flex-row-center">
+      <h3 className="line-height-dense">{guess ? `You just guessed "${guess}". it was ${won ? "correct. +1 point for you" : "wrong try again"}.` : "Select an answer."} </h3>
+
+        <div className="video-box">
+          <img src={images[answer]} 
+            alt="asl-letter-recognition" 
+            width="500" 
+            className="">
+          </img>
+          <p className="line-height-dense"> score: {score} </p>
+        </div>
+        
+        <LetterInput 
+          answer={answer} 
+          guesses={guesses}
+          won={won}
+          nextLetter={nextLetter.bind(this)} 
+          reset={reset.bind(this)} 
+          checkGuess={checkGuess.bind(this)}
+        />
+
+      </div>
+      
+      <HintFeature toggled={props.toggled} toggleHint={props.toggleHint}/>
 
     </div>
   );

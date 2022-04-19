@@ -1,4 +1,4 @@
-import LetterInput from "./LetterInput";
+// import LetterInput from "./LetterInput";
 import React from 'react';
 
 import homepageImg from "../images/homepage_img.png"
@@ -12,7 +12,7 @@ export default function CenterHomeCol() {
       <img src={homepageImg}
         alt="alphabet-cheat-sheet" 
         width="500" 
-        className="img-background">
+        className="pink-background">
       </img>
       {/* <LetterInput/> */}
     </div>

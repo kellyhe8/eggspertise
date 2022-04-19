@@ -1,19 +1,20 @@
 import Header from "./components/Header";
 import LeftNavCol from "./components/LeftNavCol";
 import CenterPracticeCol from "./components/CenterPracticeCol";
-import RightFeedbackCol from "./components/RightFeedbackCol";
 import React from 'react';
 
 
-export default function Sign() {
+export default function Practice() {
+  const [toggled, setToggled] = React.useState(true);
+
+  const toggleHint = () => setToggled(!toggled);
 
   return (
     <>
       <Header/>
-      <div className="column feed">
+      <div className="column flex-row-center">
         <LeftNavCol/>
-        <CenterPracticeCol/>
-        <RightFeedbackCol/>
+        <CenterPracticeCol toggled={toggled} toggleHint={toggleHint}/>
       </div>
     </>
   );
