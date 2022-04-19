@@ -141,10 +141,11 @@ export default function CenterPracticeCol(props) {
     <div className="row center-col">
       {/* <h3 >Sign Study Mode:</h3> */}
       {/* <p>Instructions: Sign the following letter and lock in!</p> */}
-      <p className="line-height-dense">{guess ? `you just signed ${guess}. it was ${won ? `correct` : `wrong`}.` : "Instructions: Sign the following letter and lock in!"}</p>
+      <p className="line-height-dense">Instructions: Sign the following letter and lock in!</p>
       
       <div className="pink-background row flex-row-center">
       <h3>Sign {answer}</h3>
+      <h3 className="line-height-dense feedback">{guess ? `You just signed ${guess}. It was ${won ? `correct` : `wrong`}.` : ""}</h3>
         <div className="video-box">
         <Webcam
           audio={false}
