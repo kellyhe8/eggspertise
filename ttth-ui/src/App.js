@@ -6,12 +6,6 @@ import Recognize from './Learn';
 import Sign from './Practice';
 import MediaPipe from './MediaPipe';
 
-// import axios from 'axios';
-
-
-// import * as tf from '@tensorflow/tfjs';
-// import * as jpeg from 'jpeg-js'
-
 
 // import MyApp from './leap/LeapData';
 // import Header from './components/Header';

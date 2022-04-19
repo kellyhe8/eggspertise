@@ -44,12 +44,7 @@ def home():
         # request.args gets from params
         # print(request)
         # img = request.form.get("img") # form = body
-        # print(len(request.form))
-        # print(len(img))
-        # print(len(img[0]))
-        # print(len(img[1]))
-        print(request.json)
-        print('--')
+
         joint_data = request.json
         joint_matrix = []
         for joint in joint_data.keys():
@@ -60,19 +55,7 @@ def home():
 
         prediction = asl_mediapipe_model.predict(input).argmax(axis=-1)[0]
         letter = letters[prediction]
-        print(letter)
-        # for i in range(len(img)):
-        #     print(img[i])
-        # x = img.split(',')
-        # y = np.array(x).reshape(200,200,4).astype('float32')
-        # z = y[:,:,:3]
 
-        # img_file = skimage.transform.resize(z, (imageSize, imageSize, 3))
-        # img_arr = np.asarray(img_file).reshape((-1, imageSize, imageSize, 3))
-        
-        # prediction = asl_model.predict(img_arr).argmax(axis=-1)[0]
-        # letter = letters[prediction]
-        # response = jsonify({'data': letter})
         response = jsonify({'data': letter})
         response.headers.add('Access-Control-Allow-Origin', '*')
 
