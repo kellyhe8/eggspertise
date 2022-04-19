@@ -8,15 +8,15 @@ class HintFeature extends React.Component {
 
   render() {
     return (
-      <>
+      <div className="row" style={{minWidth: "200px"}}>
         <Button sx={{mt: "10px"}} color="secondary" variant="contained" 
           onClick={() => this.props.toggleHint()}>Hint</Button> 
         {this.props.toggled && <img src={ImagesByLetter[`${this.props.answer}`][Math.floor(Math.random() * ImagesByLetter[`${this.props.answer}`].length)]}
-          alt="alphabet-cheat-sheet" 
+          alt="hint" 
           width="200" 
           >
         </img>}
-      </>
+      </div>
     );
   }
 }

@@ -8,7 +8,7 @@ export default function CenterHomeCol() {
 
   return (
     <div className="row center-col">
-      <p className="code">Welcome to Talk to the Hand!</p>
+      <p className="line-height-dense">Welcome to Talk to the Hand!</p>
       <img src={homepageImg}
         alt="alphabet-cheat-sheet" 
         width="500" 

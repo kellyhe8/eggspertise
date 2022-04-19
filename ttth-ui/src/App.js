@@ -33,18 +33,18 @@ function App() {
   return (
     <div>
       <Router>
-          <div className="App">
-        <ThemeProvider theme={theme}>
-          <Routes>
+        <div className="App">
+          <ThemeProvider theme={theme}>
+            <Routes>
+              
+              <Route path="/" element={<Home />} />
+              <Route path="/learn" element={<Recognize/>} />
+              <Route path="/practice" element={<Sign/>} />
+              <Route path="*" element={<Home/>}/>
+            </Routes>
             
-            <Route path="/" element={<Home />} />
-            <Route path="/learn" element={<Recognize/>} />
-            <Route path="/practice" element={<Sign/>} />
-            <Route path="*" element={<Home/>}/>
-          </Routes>
-          
-        </ThemeProvider>
-      </div>
+          </ThemeProvider>
+        </div>
       </Router>
     </div>
   );

@@ -37,34 +37,34 @@ export default function CenterLearnCol(props) {
   }
 
   return (
-    <div className="row center-col">
-      <p className="line-height-dense">Say the letter aloud or select the answer below.</p>
+    <div className="column">
+      <div className="row center-col">
+        <p className="line-height-dense">Say the letter aloud or select the answer below.</p>
 
-      <div className="pink-background row flex-row-center">
-      <h3 className="line-height-dense feedback">{guess ? `You just guessed "${guess}". It was ${won ? "correct. +1 point for you" : "wrong try again"}.` : "Select an answer."} </h3>
+        <div className="pink-background row flex-row-center">
+        <h3 className="line-height-dense feedback">{guess ? `You just guessed "${guess}". It was ${won ? "correct. +1 point for you" : "wrong try again"}.` : "Select an answer."} </h3>
 
-        <div className="video-box">
-          <img src={LearnImages[answer]} 
-            alt="asl-letter-recognition" 
-            width="500" 
-            className="">
-          </img>
-          <p className="line-height-dense"> Score: {score} </p>
+          <div className="video-box">
+            <img src={LearnImages[answer]} 
+              alt="asl-letter-recognition" 
+              width="500" 
+              className="">
+            </img>
+            <p className="line-height-dense"> Score: {score} </p>
+          </div>
+          
+          <LetterInput 
+            answer={answer} 
+            guesses={guesses}
+            won={won}
+            nextLetter={nextLetter.bind(this)} 
+            reset={reset.bind(this)} 
+            checkGuess={checkGuess.bind(this)}
+          />
+
         </div>
-        
-        <LetterInput 
-          answer={answer} 
-          guesses={guesses}
-          won={won}
-          nextLetter={nextLetter.bind(this)} 
-          reset={reset.bind(this)} 
-          checkGuess={checkGuess.bind(this)}
-        />
-
       </div>
-      
       <HintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
-
     </div>
   );
 }
