@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './Home';
 import Recognize from './Learn';
 import Sign from './Practice';
-import MediaPipe from './MediaPipe';
-
 
 // import MyApp from './leap/LeapData';
 // import Header from './components/Header';
@@ -62,7 +60,7 @@ function App() {
             {/* <Route exact path="/" element={<Home/>} /> */}
             <Route path="/learn" element={<Recognize/>} />
             <Route path="/practice" element={<Sign/>} />
-            <Route path="/mediapipe" element={<MediaPipe/>}/>
+            {/* <Route path="/mediapipe" element={<MediaPipe/>}/> */}
             <Route path="*" element={<Home/>}/>
           </Routes>
           {/* <Home/>
