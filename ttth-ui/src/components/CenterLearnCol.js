@@ -13,27 +13,47 @@ export default function CenterLearnCol(props) {
   const [guesses, setGuesses] = useState([]);
   const [won, setWon] = useState(false);
   const [score, setScore] = useState(0);
+  const [showAnswer, setShowAnswer] = useState(false);
 
   const nextLetter = () => {
     setAnswer(alphabet[Math.floor(Math.random() * alphabet.length)]);
   }
 
+  const setShowAnswerTrue = () => {
+    // if showing answer, -1 point and untoggle the hint if it's on
+    setScore(score - 1);
+    if (props.toggled) {
+      props.toggleHint();
+    }
+    setShowAnswer(true);
+  }
+
   const checkGuess = (guess) => {
-    setScore(answer.toUpperCase() === guess.toUpperCase() ? score + 1 : score);
-    setWon(answer.toUpperCase() === guess.toUpperCase() || won ? true : false);
-    setGuess(guess);
-    setGuesses([...guesses, guess])
-    return answer.toUpperCase() === guess.toUpperCase();
+    if (!showAnswer) {
+      // if they didn't just look at the answer, then check
+      setScore(answer.toUpperCase() === guess.toUpperCase() ? score + 1 : score);
+      setWon(answer.toUpperCase() === guess.toUpperCase() || won ? true : false);
+      setGuess(guess);
+      setGuesses([...guesses, guess])
+      return answer.toUpperCase() === guess.toUpperCase();
+    } else {
+      // otherwise don't do anything
+      return false;
+    }
   }
   
   const reset = () => {
-    if (!won) {
-      setScore(score - 1)
+    if (showAnswer) {
+      
     }
     setGuess("");
     setGuesses([]);
     setWon(false);
+    setShowAnswer(false);
     nextLetter();
+    if (props.toggled) {
+      props.toggleHint();
+    }
   }
 
   return (
@@ -42,7 +62,11 @@ export default function CenterLearnCol(props) {
         <p className="line-height-dense">Say the letter aloud or select the answer below.</p>
 
         <div className="pink-background row flex-row-center">
-        <h3 className="line-height-dense feedback">{guess ? `You just guessed "${guess}". It was ${won ? "correct. +1 point for you" : "wrong try again"}.` : "Select an answer."} </h3>
+        <h3 className="line-height-dense feedback">
+          {showAnswer ? "You cheated! -1 point!" 
+            : guess ? `You guessed "${guess}". ${won ? "Good job! +1 point!" : "Try again."}` 
+              : "Select an answer."} 
+          </h3>
 
           <div className="video-box">
             <img src={LearnImages[answer]} 
@@ -60,6 +84,8 @@ export default function CenterLearnCol(props) {
             nextLetter={nextLetter.bind(this)} 
             reset={reset.bind(this)} 
             checkGuess={checkGuess.bind(this)}
+            showAnswer={showAnswer} 
+            setShowAnswerTrue={setShowAnswerTrue}
           />
 
         </div>

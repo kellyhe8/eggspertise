@@ -33,9 +33,7 @@ export default function CenterPracticeCol(props) {
   return (
     <div className="column">
       <div className="row center-col">
-        {/* <h3 >Sign Study Mode:</h3> */}
-        {/* <p>Instructions: Sign the following letter and lock in!</p> */}
-        <p className="line-height-dense">Instructions: Sign the following letter and lock in!</p>
+        <p className="line-height-dense">Instructions: Sign the following letter and submit!</p>
         
         <div className="pink-background row flex-row-center">
         <h3>Sign {answer}</h3>

@@ -12,6 +12,7 @@ export default function MediaPipe(props) {
 
   const [sendFrame, setSendFrame] = useState(false);
   const [jointData, setJointData] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   let camera = null;
@@ -26,23 +27,28 @@ export default function MediaPipe(props) {
   // https://stackoverflow.com/questions/67674453/how-to-run-mediapipe-facemesh-on-a-es6-node-js-environment-alike-react
 
   let request = (jointData) => {
+    console.log("redoting request");
     var myDataObj = {"img": jointData};
     var formData = new FormData();
 
     for (var key in myDataObj) {
       formData.append(key, myDataObj[key])
     } 
+    // setIsLoading(true);
     // axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
     axios.post('http://127.0.0.1:5000', jointData, {headers:{ 'Content-Type': 'application/json' }})
       .then((res) => {
           props.onCheckGuess(res.data.data)
           // console.log(res.data)
+          // setIsLoading(false);
       }).catch((error) => {
+        // setIsLoading(false);
           // console.log(error)
       });
   }
 
   useEffect(() => {
+    console.log("redoting useFEfect");
     const hands = new Hands({locateFile: (file) => {
       return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
     }});
@@ -70,6 +76,7 @@ export default function MediaPipe(props) {
   }, [sendFrame]);
 
   function onResults(results) {
+    console.log("redoting onResults");
     canvasRef.current.width = webcamRef.current.video.videoWidth;
     canvasRef.current.height = webcamRef.current.video.videoHeight;
 
@@ -83,8 +90,8 @@ export default function MediaPipe(props) {
     if (results.multiHandLandmarks) {
       for (const landmarks of results.multiHandLandmarks) {
         setJointData(landmarks);
-        drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {color: '#6A8D73', lineWidth: 2});
-        drawLandmarks(canvasCtx, landmarks, {color: '#823038', lineWidth: 2, radius:2});
+        drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {color: '#6A8D73', lineWidth: 3});
+        drawLandmarks(canvasCtx, landmarks, {color: '#823038', lineWidth: 3, radius:3});
       }
     }
     // canvasCtx.restore();
@@ -104,7 +111,8 @@ export default function MediaPipe(props) {
       />
       <canvas ref={canvasRef} style={{width: 600, height: 400}}/>
       {/* <video ref={videoRef} onCanPlay={() => getImage()} />   */}
-      <Button disabled={props.isWon} onClick={toggleSendFrame} variant="contained"> Send Img </Button>  
+      {/* <p>{isLoading ? "loading" : "not loading"} asd</p> */}
+      <Button disabled={props.isWon} onClick={toggleSendFrame} variant="contained" color="secondary"> Submit</Button>  
     </>      
   );
 }

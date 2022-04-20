@@ -9,7 +9,7 @@ class HintFeature extends React.Component {
   render() {
     return (
       <div className="row" style={{minWidth: "200px"}}>
-        <Button sx={{mt: "10px"}} color="secondary" variant="contained" 
+        <Button sx={{mb: "10px"}} color="secondary" variant="outlined" 
           onClick={() => this.props.toggleHint()}>Hint</Button> 
         {this.props.toggled && <img src={ImagesByLetter[`${this.props.answer}`][Math.floor(Math.random() * ImagesByLetter[`${this.props.answer}`].length)]}
           alt="hint" 
