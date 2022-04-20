@@ -8,26 +8,26 @@ import ImageListItem from '@mui/material/ImageListItem';
 
 export default function CenterHomeCol() {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  const colors = ["pink", "green", "black", "blue"];
+  const colors = ["green", "black", "blue", "pink"];
   return (
     <div className="row center-col">
-      <h2 className="line-height-dense">Welcome to Talk to the Hand!</h2>
+      <h2 className="line-height-dense">Welcome to Talk to the Hand</h2>
       <p className="line-height-dense">
-        Learn ASL with interactive practice and feedback.
+        Learn ASL with interactive practice and feedback!
       </p>
       <img src={homepageImg}
         alt="alphabet-cheat-sheet" 
-        width="500" 
+        width="650" 
         className="pink-background">
       </img>
       {/* <LetterInput/> */}
       <br/>
       
       <p className="line-height-dense">
-      Learn: flashcard-style learning.
+      <b>Learn:</b> flashcard-style learning.
       </p>
       <p className="line-height-dense">
-      Practice: sign letters and see how accurate you are!
+      <b>Practice:</b> sign letters and see how accurate you are!
       </p>
       <br/>
       <p className="line-height-dense">
@@ -37,8 +37,9 @@ export default function CenterHomeCol() {
       {
         alphabet.map((letter, j) => {
           return (
-          <div className={`${colors[j%colors.length]}-background row`} style={{marginTop: 10, marginBottom: 10}}>
-            <h2 key={`${letter}Title`}>{letter}</h2>
+          <div className={`flex-col-center`} style={{marginTop: 10, marginBottom: 10}}>
+            <h2 key={`${letter}Title`} style={{marginRight: 20}}>{letter}</h2>
+            <div className={`${colors[j%colors.length]}-background`} style={{paddingTop: 0, paddingBottom: 0}}>
             <ImageList variant="standard" cols={3} gap={8} key={`${letter}List`}>
               {ImagesByLetter[letter].map((item, i) => (
                 <ImageListItem key={`${letter}${i}`}>
@@ -49,6 +50,7 @@ export default function CenterHomeCol() {
                 </ImageListItem>
               ))}
             </ImageList>
+            </div>
           </div>)
         })
       }
