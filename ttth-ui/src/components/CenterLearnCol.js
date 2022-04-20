@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import LetterInput from "./LetterInput";
 import HintFeature from './HintFeature';
 import { LearnImages } from "./LettersImages";
+import SpeechDetection from "./SpeechDetection";
 
 
 export default function CenterLearnCol(props) {
@@ -31,11 +32,12 @@ export default function CenterLearnCol(props) {
   const checkGuess = (guess) => {
     if (!showAnswer) {
       // if they didn't just look at the answer, then check
-      setScore(answer.toUpperCase() === guess.toUpperCase() ? score + 1 : score);
-      setWon(answer.toUpperCase() === guess.toUpperCase() || won ? true : false);
+      guess = guess.toUpperCase()
+      setScore(answer.toUpperCase() === guess ? score + 1 : score);
+      setWon(answer.toUpperCase() === guess || won ? true : false);
       setGuess(guess);
       setGuesses([...guesses, guess])
-      return answer.toUpperCase() === guess.toUpperCase();
+      return answer.toUpperCase() === guess;
     } else {
       // otherwise don't do anything
       return false;
@@ -91,6 +93,7 @@ export default function CenterLearnCol(props) {
         </div>
       </div>
       <HintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
+      <SpeechDetection won={won} showAnswer={showAnswer} onCheckGuess={checkGuess} onNext={reset} onViewAnswer={setShowAnswerTrue}/>
     </div>
   );
 }
