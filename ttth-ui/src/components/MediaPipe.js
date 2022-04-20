@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Button from '@mui/material/Button';
+// import LoadingButton from '@mui/lab/LoadingButton';
 
 import Webcam from "react-webcam";
 import { Camera } from '@mediapipe/camera_utils'
@@ -26,29 +27,26 @@ export default function MediaPipe(props) {
   }
   // https://stackoverflow.com/questions/67674453/how-to-run-mediapipe-facemesh-on-a-es6-node-js-environment-alike-react
 
-  let request = (jointData) => {
-    console.log("redoting request");
+  let request = async (jointData) => {
+    // console.log("redoting request");
     var myDataObj = {"img": jointData};
     var formData = new FormData();
 
     for (var key in myDataObj) {
       formData.append(key, myDataObj[key])
     } 
-    // setIsLoading(true);
     // axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
     axios.post('http://127.0.0.1:5000', jointData, {headers:{ 'Content-Type': 'application/json' }})
       .then((res) => {
-          props.onCheckGuess(res.data.data)
-          // console.log(res.data)
-          // setIsLoading(false);
+        props.onCheckGuess(res.data.data)
       }).catch((error) => {
-        // setIsLoading(false);
-          // console.log(error)
+        // console.log(error)
       });
   }
 
   useEffect(() => {
-    console.log("redoting useFEfect");
+    // console.log("redoting useFEfect", isLoading);
+    // console.log(isLoading)
     const hands = new Hands({locateFile: (file) => {
       return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
     }});
@@ -76,7 +74,7 @@ export default function MediaPipe(props) {
   }, [sendFrame]);
 
   function onResults(results) {
-    console.log("redoting onResults");
+    // console.log("redoting onResults");
     canvasRef.current.width = webcamRef.current.video.videoWidth;
     canvasRef.current.height = webcamRef.current.video.videoHeight;
 
@@ -94,7 +92,6 @@ export default function MediaPipe(props) {
         drawLandmarks(canvasCtx, landmarks, {color: '#823038', lineWidth: 3, radius:3});
       }
     }
-    // canvasCtx.restore();
   }
 
   return (
@@ -111,8 +108,13 @@ export default function MediaPipe(props) {
       />
       <canvas ref={canvasRef} style={{width: 600, height: 400}}/>
       {/* <video ref={videoRef} onCanPlay={() => getImage()} />   */}
-      {/* <p>{isLoading ? "loading" : "not loading"} asd</p> */}
-      <Button disabled={props.isWon} onClick={toggleSendFrame} variant="contained" color="secondary"> Submit</Button>  
+      <Button 
+        // loading={isLoading}
+        // loadingPosition="center"
+        disabled={props.isWon} 
+        onClick={() => {
+          toggleSendFrame();
+        }} variant="contained" color="secondary"> Submit</Button>  
     </>      
   );
 }

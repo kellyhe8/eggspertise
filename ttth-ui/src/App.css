@@ -24,6 +24,21 @@ video {
   background-color: rgb(186, 143, 149, 0.3);
 }
 
+.green-background {
+  padding: 1em;
+  background-color: rgb(106, 141, 115, 0.3);
+}
+
+.black-background {
+  padding: 1em;
+  background-color: rgb(0, 0, 0, 0.2);
+}
+
+.blue-background {
+  padding: 1em;
+  background-color: rgb(52, 89, 149, 0.3);
+}
+
 .App {
   /* text-align: center; */
   /* align-items: center; */

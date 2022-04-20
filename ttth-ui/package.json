@@ -9,6 +9,7 @@
     "@mediapipe/drawing_utils": "^0.3.1620248257",
     "@mediapipe/hands": "^0.4.1646424915",
     "@mui/icons-material": "^5.5.1",
+    "@mui/lab": "^5.0.0-alpha.78",
     "@mui/material": "^5.5.3",
     "@mui/styles": "^5.5.3",
     "@tensorflow/tfjs": "^3.15.0",

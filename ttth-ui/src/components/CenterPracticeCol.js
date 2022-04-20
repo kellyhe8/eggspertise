@@ -33,11 +33,11 @@ export default function CenterPracticeCol(props) {
   return (
     <div className="column">
       <div className="row center-col">
-        <p className="line-height-dense">Instructions: Sign the following letter and submit!</p>
+        <p className="line-height-dense">Sign the given letter and submit to check!</p>
         
         <div className="pink-background row flex-row-center">
         <h3>Sign {answer}</h3>
-        <h3 className="line-height-dense feedback">{guess ? `You just signed ${guess}. It was ${won ? `correct` : `wrong`}.` : ""}</h3>
+        <h3 className="line-height-dense feedback">{guess ? `You just signed ${guess}. ${won ? `Good job! +1 point!` : `Try again.`}.` : ""}</h3>
           <div className="video-box">
             <MediaPipe onCheckGuess={checkGuess} isWon={won}/>
             <p className="line-height-dense">Score: {points}</p>
