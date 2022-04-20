@@ -66,7 +66,7 @@ export default function CenterLearnCol(props) {
         <div className="pink-background row flex-row-center">
         <h3 className="line-height-dense feedback">
           {showAnswer ? "You cheated! -1 point!" 
-            : guess ? `You guessed "${guess}". ${won ? "Good job! +1 point!" : "Try again."}` 
+            : guess ? `You guessed "${guess}". ${won ? "Good job! +1 point!" : "Wrong - try again."}` 
               : "Select an answer."} 
           </h3>
 
@@ -92,8 +92,12 @@ export default function CenterLearnCol(props) {
 
         </div>
       </div>
-      <HintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
-      <SpeechDetection won={won} showAnswer={showAnswer} onCheckGuess={checkGuess} onNext={reset} onViewAnswer={setShowAnswerTrue}/>
+      <div className=''>
+        <SpeechDetection won={won} showAnswer={showAnswer} onCheckGuess={checkGuess} onNext={reset} onViewAnswer={setShowAnswerTrue}/>
+        <br/>
+        <HintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
+      </div>
+      
     </div>
   );
 }

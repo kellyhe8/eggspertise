@@ -10,7 +10,7 @@ class LetterInput extends React.Component {
     const row3 = "ZXCVBNM".split("");
     return (
       <div className="letterinput" >
-        <ButtonGroup disableElevation  color="secondary"  variant="contained" size="large" aria-label="outlined button group">
+        <ButtonGroup disableElevation  color="secondary" variant="contained" size="large" aria-label="outlined button group">
           {row1.map((l,_) => {
             return <Button key={l} disabled={this.props.guesses.includes(l) || this.props.won || (l !== this.props.answer && this.props.showAnswer)} onClick={() => this.props.checkGuess(l)}>{l}</Button>
           })}
@@ -30,9 +30,9 @@ class LetterInput extends React.Component {
           <Button disabled={this.props.won || this.props.showAnswer} onClick={() => {
             // this.props.reset();
             this.props.setShowAnswerTrue();
-          }} variant="contained">view answer</Button>
-          <Button disabled={this.props.won || this.props.showAnswer} onClick={() => this.props.reset()} variant="contained">skip</Button>
-          <Button disabled={!this.props.won && !this.props.showAnswer} onClick={() => this.props.reset()} variant="contained">next</Button>
+          }} variant="contained" size="small">view answer</Button>
+          <Button size="small" disabled={this.props.won || this.props.showAnswer} onClick={() => this.props.reset()} variant="contained">skip</Button>
+          <Button size="small" disabled={!this.props.won && !this.props.showAnswer} onClick={() => this.props.reset()} variant="contained">next</Button>
         </div>
       </div>
     );

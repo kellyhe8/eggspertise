@@ -20,14 +20,13 @@ export default function CenterHomeCol() {
         width="650" 
         className="pink-background">
       </img>
-      {/* <LetterInput/> */}
       <br/>
       
       <p className="line-height-dense">
-      <b>Learn:</b> flashcard-style learning.
+      <b>Learn Mode:</b> flashcard-style learning.
       </p>
       <p className="line-height-dense">
-      <b>Practice:</b> sign letters and see how accurate you are!
+      <b>Practice Mode:</b> sign letters and see how accurate you are!
       </p>
       <br/>
       <p className="line-height-dense">
@@ -45,6 +44,7 @@ export default function CenterHomeCol() {
                 <ImageListItem key={`${letter}${i}`}>
                   <img
                     src={item}
+                    alt="letter-example"
                     loading="lazy"
                   />
                 </ImageListItem>

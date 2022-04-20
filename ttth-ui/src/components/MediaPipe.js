@@ -13,6 +13,7 @@ export default function MediaPipe(props) {
 
   const [sendFrame, setSendFrame] = useState(false);
   const [jointData, setJointData] = useState([]);
+  // const [errorMsg, setErrorMsg] = useState("");
   // const [isLoading, setIsLoading] = useState(false);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -36,11 +37,14 @@ export default function MediaPipe(props) {
       formData.append(key, myDataObj[key])
     } 
     // axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
-    axios.post('http://127.0.0.1:5000', jointData, {headers:{ 'Content-Type': 'application/json' }})
+    axios.post('http://localhost:3001', jointData, {headers:{ 'Content-Type': 'application/json' }})
       .then((res) => {
         props.onCheckGuess(res.data.data)
+        // setErrorMsg("");
       }).catch((error) => {
-        // console.log(error)
+        // console.log(error);
+        // setErrorMsg(error);
+        
       });
   }
 
@@ -108,6 +112,7 @@ export default function MediaPipe(props) {
       />
       <canvas ref={canvasRef} style={{width: 600, height: 400}}/>
       {/* <video ref={videoRef} onCanPlay={() => getImage()} />   */}
+      {/* <p>{errorMsg}</p> */}
       <Button 
         // loading={isLoading}
         // loadingPosition="center"

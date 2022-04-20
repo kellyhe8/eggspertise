@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Button from '@mui/material/Button';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 export default function SpeechDetection(props) {
@@ -70,18 +71,20 @@ export default function SpeechDetection(props) {
     SpeechRecognition.startListening({ continuous: true })
     console.log(listening);
     console.log(isMicrophoneAvailable);
-    console.log("hi");
+    // console.log("hi");
   } else {
     // Fallback behaviour
   }
 
   return (
-    <div>
-      <p>Microphone: {listening ? 'on' : 'off'}</p>
+    <div className='row'>
+      <Button onClick={resetTranscript} variant="outlined" size="small">Reset Mic</Button>
+      <p className='line-height-dense'>Microphone: <b>{listening ? 'ON' : 'OFF'}</b></p>
+      <p className='line-height-dense'>{`"${transcript}"`}</p>
       {/* <button onClick={SpeechRecognition.startListening}>Start</button>
       <button onClick={SpeechRecognition.stopListening}>Stop</button> */}
-      <button onClick={resetTranscript}>Reset</button>
-      <p>{transcript}</p>
+      
+      
     </div>
   );
 };

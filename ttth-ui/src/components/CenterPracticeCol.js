@@ -24,10 +24,15 @@ export default function CenterPracticeCol(props) {
   }
 
   const checkGuess = (guess) => {
-    setPoints(answer.toUpperCase() === guess.toUpperCase() ? points + 1 : points);
-    setWon(answer.toUpperCase() === guess.toUpperCase() || won ? true : false);
+    const correct = answer.toUpperCase() === guess.toUpperCase()
+    setPoints(correct ? points + 1 : points);
+    setWon(correct || won ? true : false);
     setGuess(guess);
-    return answer.toUpperCase() === guess.toUpperCase();
+    if (correct && props.toggled) {
+      // turn off hint after getting it right
+      props.toggleHint();
+    }
+    return correct;
   }
 
   return (
@@ -37,14 +42,14 @@ export default function CenterPracticeCol(props) {
         
         <div className="pink-background row flex-row-center">
         <h3>Sign {answer}</h3>
-        <h3 className="line-height-dense feedback">{guess ? `You just signed ${guess}. ${won ? `Good job! +1 point!` : `Try again.`}.` : ""}</h3>
+        <h3 className="line-height-dense feedback">{guess ? `You just signed ${guess}. ${won ? `Good job! +1 point!` : `Wrong - try again.`}` : ""}</h3>
           <div className="video-box">
             <MediaPipe onCheckGuess={checkGuess} isWon={won}/>
             <p className="line-height-dense">Score: {points}</p>
           </div>
           <div className="control-buttons">
-            <Button disabled={!won} onClick={reset} variant="contained">next</Button>
-            <Button disabled={won} onClick={reset} variant="contained">skip</Button>
+            <Button disabled={won} onClick={reset} variant="contained" size="small">skip</Button>
+            <Button disabled={!won} onClick={reset} variant="contained" size="small">next</Button>
           </div>
         </div>
         
