@@ -93,9 +93,10 @@ export default function CenterLearnCol(props) {
         </div>
       </div>
       <div className=''>
-        <SpeechDetection won={won} showAnswer={showAnswer} onCheckGuess={checkGuess} onNext={reset} onViewAnswer={setShowAnswerTrue}/>
-        <br/>
         <HintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
+        <br/>
+        <SpeechDetection won={won} showAnswer={showAnswer} toggleHint={props.toggleHint} onCheckGuess={checkGuess} onNext={reset} onViewAnswer={setShowAnswerTrue}/>
+        
       </div>
       
     </div>

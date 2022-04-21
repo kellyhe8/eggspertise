@@ -45,9 +45,9 @@ export default function SpeechDetection(props) {
       }
     },
     {
-      command: ["hint", "show hint"],
+      command: ["hint", "show hint", "hide hint"],
       callback: () => {
-        
+        props.toggleHint();
       }
     }
 
@@ -69,8 +69,8 @@ export default function SpeechDetection(props) {
 
   if (browserSupportsContinuousListening) {
     SpeechRecognition.startListening({ continuous: true })
-    console.log(listening);
-    console.log(isMicrophoneAvailable);
+    // console.log(listening);
+    // console.log(isMicrophoneAvailable);
     // console.log("hi");
   } else {
     // Fallback behaviour
