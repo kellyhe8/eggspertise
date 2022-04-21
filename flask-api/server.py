@@ -23,7 +23,7 @@ CORS(app)
   
 imageSize = 64
 asl_model = load_model("./ASL.h5")
-asl_mediapipe_model = load_model("./model_2.h5")
+asl_mediapipe_model = load_model("./model_2_new.h5")
 letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
 
