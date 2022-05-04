@@ -1,10 +1,13 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import Home from './Home';
 import Recognize from './Learn';
 import Sign from './Practice';
 import Tutorial from'./Tutorial';
+import Survey from './Survey';
+import Level1Learn from './Level1Learn';
+import Level1Read from './Level1Read';
 
 // import MyApp from './leap/LeapData';
 // import Header from './components/Header';
@@ -29,8 +32,11 @@ const theme = createTheme({
   },
 });
 
-function App() {
-  
+
+export default function App() {
+  const [globalName, setGlobalName] = useState("");
+
+  console.log(globalName);
   return (
     <div>
       <Router>
@@ -39,10 +45,13 @@ function App() {
             <Routes>
               
               <Route path="/" element={<Home />} />
+              <Route path="/survey" element={<Survey onSetGlobalName={setGlobalName}/>} />
+              <Route path="/learning_1" element={<Level1Learn globalName={globalName}/>}/>
+              <Route path="/reading_1" element={<Level1Read globalName={globalName}/>} />
               <Route path="/learning" element={<Tutorial/>} />
               <Route path="/reading" element={<Recognize/>} />
               <Route path="/speaking" element={<Sign/>} />
-              <Route path="*" element={<Home/>}/>
+              <Route path="*" element={<Home />}/>
             </Routes>
             
           </ThemeProvider>
@@ -51,5 +60,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

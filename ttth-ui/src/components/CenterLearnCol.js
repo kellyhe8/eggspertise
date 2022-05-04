@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import LetterInput from "./LetterInput";
 import HintFeature from './HintFeature';
 import { LearnImages } from "./LettersImages";
-import SpeechDetection from "./SpeechDetection";
+import SpeechDetection from "./SpeechDetectionLearn";
 
 
 export default function CenterLearnCol(props) {
