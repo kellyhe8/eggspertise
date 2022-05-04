@@ -25,7 +25,7 @@ export default function LeftNavCol() {
   if (location.pathname === "/survey"){
     initState = "survey";
   } 
-  else if (location.pathname === "/learning_1") {
+  else if (location.pathname === "/learning_1" || location.pathname === "/reading_1" || location.pathname === "/speaking_1") {
     initState = "learning_1";
   }
   else if (location.pathname === "/learning") {

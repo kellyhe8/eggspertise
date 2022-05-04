@@ -8,6 +8,7 @@ import Tutorial from'./Tutorial';
 import Survey from './Survey';
 import Level1Learn from './Level1Learn';
 import Level1Read from './Level1Read';
+import Level1Speak from './Level1Speak';
 
 // import MyApp from './leap/LeapData';
 // import Header from './components/Header';
@@ -43,11 +44,11 @@ export default function App() {
         <div className="App">
           <ThemeProvider theme={theme}>
             <Routes>
-              
               <Route path="/" element={<Home />} />
               <Route path="/survey" element={<Survey onSetGlobalName={setGlobalName}/>} />
               <Route path="/learning_1" element={<Level1Learn globalName={globalName}/>}/>
               <Route path="/reading_1" element={<Level1Read globalName={globalName}/>} />
+              <Route path="/speaking_1" element={<Level1Speak globalName={globalName} />} />
               <Route path="/learning" element={<Tutorial/>} />
               <Route path="/reading" element={<Recognize/>} />
               <Route path="/speaking" element={<Sign/>} />
