@@ -27,7 +27,7 @@ export default function MediaPipe(props) {
       request(data)
     }
     setSendFrame(!sendFrame); // Makes the useEffect reset so the hook states updates the newest jointData
-  }
+    }
   // https://stackoverflow.com/questions/67674453/how-to-run-mediapipe-facemesh-on-a-es6-node-js-environment-alike-react
 
   let request = async (jointData) => {

@@ -89,7 +89,7 @@ export default function NameQuestionnaire(props) {
                 </p>
 
                 <form type="submit" className="line-height-dense" onSubmit={onConfirmName}>
-                    <Input placeholder='Type or Say "My name is ..."' id="name" type="text" placeholder="Name" name="name" value={name} onChange={handleNameInputChange}/>
+                    <Input id="name" type="text" placeholder='Name' name="name" value={name} onChange={handleNameInputChange}/>
                 </form>
                 <SpeechDetection 
                     onNameSaid={onNameSaid.bind(this)}
