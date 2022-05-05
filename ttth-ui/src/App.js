@@ -2,13 +2,10 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useState } from "react";
 import Home from './Home';
-import Recognize from './Learn';
-import Sign from './Practice';
-import Tutorial from'./Tutorial';
+import Read from './Read';
+import Sign from './Speak';
+import Learn from'./Learn';
 import Survey from './Survey';
-import Level1Learn from './Level1Learn';
-import Level1Read from './Level1Read';
-import Level1Speak from './Level1Speak';
 
 // import MyApp from './leap/LeapData';
 // import Header from './components/Header';
@@ -46,11 +43,11 @@ export default function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/survey" element={<Survey onSetGlobalName={setGlobalName}/>} />
-              <Route path="/learning_1" element={<Level1Learn globalName={globalName}/>}/>
-              <Route path="/reading_1" element={<Level1Read globalName={globalName}/>} />
-              <Route path="/speaking_1" element={<Level1Speak globalName={globalName} />} />
-              <Route path="/learning" element={<Tutorial/>} />
-              <Route path="/reading" element={<Recognize/>} />
+              <Route path="/learning_1" element={<Learn isLevel={true} globalName={globalName}/>}/>
+              <Route path="/reading_1" element={<Read isLevel={true} globalName={globalName}/>} />
+              <Route path="/speaking_1" element={<Sign isLevel={true} globalName={globalName} />} />
+              <Route path="/learning" element={<Learn/>} />
+              <Route path="/reading" element={<Read/>} />
               <Route path="/speaking" element={<Sign/>} />
               <Route path="*" element={<Home />}/>
             </Routes>

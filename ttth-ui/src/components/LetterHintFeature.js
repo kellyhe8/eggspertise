@@ -7,8 +7,8 @@ class LetterHintFeature extends React.Component {
 
   constructor(props) {
       super(props);
-      console.log(props);
-      console.log("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").filter((letter) => letter !== props.answer));
+      // console.log(props);
+      // console.log("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").filter((letter) => letter !== props.answer));
       this.state = {
           letterSubset: "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""),
           hintsSeen: 0,
@@ -52,7 +52,7 @@ class LetterHintFeature extends React.Component {
 
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
 
     return (
       <div className="row" style={{minWidth: "200px"}}>

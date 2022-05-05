@@ -5,19 +5,29 @@ import HintFeature from './HintFeature';
 import MediaPipe from "./MediaPipe";
 
 
-export default function CenterPracticeCol(props) {
-
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const [answer, setAnswer] = useState(alphabet[Math.floor(Math.random() * alphabet.length)]);
+export default function CenterSpeakCol(props) {
+  const alphabet = props.globalName ? props.globalName.toUpperCase().replace(/\s/g, "").split('') : "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  // const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [answer, setAnswer] = useState(props.globalName ? alphabet[0] : alphabet[Math.floor(Math.random() * alphabet.length)]);
   const [guess, setGuess] = useState("");
   const [feedback, setFeedback] = useState("");
   const [won, setWon] = useState(false);
   const [points, setPoints] = useState(0);
 
   const reset = () => {
+    if (props.globalName) {
+      const newIndex = (currentIndex + 1) % alphabet.length
+      setCurrentIndex(newIndex)
+      setAnswer(alphabet[newIndex]);
+    }
+    else {
+      setAnswer(alphabet[props.globalName ? 0 : Math.floor(Math.random() * alphabet.length)]);
+    }
     setGuess("");
     setWon(false);
-    setAnswer(alphabet[Math.floor(Math.random() * alphabet.length)]);
+    setFeedback("");
+    // setAnswer(alphabet[Math.floor(Math.random() * alphabet.length)]);
     if (props.toggled) {
       // turn hint off for the next round
       props.toggleHint();
@@ -44,9 +54,9 @@ export default function CenterPracticeCol(props) {
         <p className="line-height-dense">Sign the given letter and hold the pose!</p>
         
         <div className="pink-background row flex-row-center">
-        <h3>Sign {answer}</h3>
-        <h3 className={`line-height-dense ${won ? 'correct' : 'feedback'}`}>{guess ? `You just signed ${guess}. ${won ? `Good job! +1 point!` : `Wrong - try again.`}` : ""}</h3>
-        <h3 className="line-height-dense feedback">{feedback}</h3>
+        <h3 style={{marginBottom: "0"}}>Sign {answer}</h3>
+        <p className={`line-height-dense ${won ? 'correct' : 'feedback'}`}>{guess ? `That looked like a ${guess} to us. ${won ? `Good job! +1 point!` : `Wrong - try again.`}` : ""}</p>
+        {feedback ? <h3 className="line-height-dense feedback">{feedback}</h3> : ""}
           <div className="video-box">
             <MediaPipe onCheckGuess={checkGuess} answer={answer} isWon={won}/>
             <p className="line-height-dense">Score: {points}</p>

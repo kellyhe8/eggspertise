@@ -186,7 +186,7 @@ def home():
         prediction = asl_mediapipe_model.predict(input).argmax(axis=-1)[0]
         letter = letters[prediction]
         feedback = "Good job!"
-        if prediction != letter:
+        if letter != answer:
             # feedback = check_S(input[0])
             feedback = feedback_fns[answer](input[0])
         response = jsonify({'data': letter, 'feedback': feedback})

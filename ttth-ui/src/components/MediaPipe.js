@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 // import LoadingButton from '@mui/lab/LoadingButton';
 
 import Webcam from "react-webcam";
@@ -79,7 +79,10 @@ export default function MediaPipe(props) {
   }, []);
 
   useEffect(() => {
-    if (!props.isWon) {
+    if (jointData.length === 0) {
+      toggleSendFrame()
+    }
+    if (!props.isWon && jointData.length !== 0) {
       setTimeout(() => {
         setCountdown("5")
         setTimeout(() => {
@@ -100,7 +103,7 @@ export default function MediaPipe(props) {
         }, 1000);
       }, 1000);
       
-      
+    // }
       
       
       // setTimeout(toggleSendFrame, 5000);
