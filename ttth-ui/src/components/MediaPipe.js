@@ -21,10 +21,11 @@ export default function MediaPipe(props) {
 
   const toggleSendFrame = () => {
     const data = {};
-    jointData.forEach((val, i) => data[i] = val)
-
-    request(data);
-    setSendFrame(!sendFrame);
+    if (jointData.length > 0 && !props.isWrong) {
+      jointData.forEach((val, i) => data[i] = val)
+      request(data)
+    }
+    setSendFrame(!sendFrame); // Makes the useEffect reset so the hook states updates the newest jointData
   }
   // https://stackoverflow.com/questions/67674453/how-to-run-mediapipe-facemesh-on-a-es6-node-js-environment-alike-react
 
@@ -32,6 +33,7 @@ export default function MediaPipe(props) {
     // axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
     // console.log("poo",jointData)
     jointData["answer"] = props.answer
+    // console.log("Send request");
     axios.post('http://localhost:3001', jointData, {headers:{ 'Content-Type': 'application/json' }})
       .then((res) => {
         props.onCheckGuess({guess: res.data.data, feedback: res.data.feedback})
@@ -59,6 +61,7 @@ export default function MediaPipe(props) {
     });
 
     hands.onResults(onResults);
+  
     
     if (typeof webcamRef.current !== "undefined" && webcamRef.current !== null) {
       camera = new Camera(webcamRef.current.video, {
@@ -69,12 +72,17 @@ export default function MediaPipe(props) {
         height: 400,
       });
       camera.start();
-
+      // setTimeout(toggleSendFrame, 5000);
     }
-  }, [sendFrame]);
+  }, []);
+
+  useEffect(() => {
+    if (!props.isWon) {
+      setTimeout(toggleSendFrame, 5000);
+    }
+  }, [sendFrame, props.isWon]);
 
   function onResults(results) {
-    // console.log("redoting onResults");
     canvasRef.current.width = webcamRef.current.video.videoWidth;
     canvasRef.current.height = webcamRef.current.video.videoHeight;
 
@@ -91,6 +99,8 @@ export default function MediaPipe(props) {
         drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {color: '#6A8D73', lineWidth: 3});
         drawLandmarks(canvasCtx, landmarks, {color: '#823038', lineWidth: 3, radius:3});
       }
+    } else {
+      setJointData([]);
     }
   }
 

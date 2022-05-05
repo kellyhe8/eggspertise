@@ -22,12 +22,20 @@ export default function LeftNavCol() {
   // let state = {  } 
   const location = useLocation(); 
   let initState = "home";
-  if (location.pathname === "/reading") {
+  if (location.pathname === "/survey"){
+    initState = "survey";
+  } 
+  else if (location.pathname === "/learning_1" || location.pathname === "/reading_1" || location.pathname === "/speaking_1") {
+    initState = "learning_1";
+  }
+  else if (location.pathname === "/learning") {
+  initState = "learning";
+  }
+  else if (location.pathname === "/reading") {
     initState = "reading";
-  } else if (location.pathname === "/speaking") {
+  }
+  else if (location.pathname === "/speaking") {
     initState = "speaking";
-  } else if (location.pathname === "/learning") {
-    initState = "learning";
   }
   const [value, setValue] = React.useState(initState);
   
@@ -48,9 +56,11 @@ export default function LeftNavCol() {
         orientation="vertical"
       >
         <CustomTab component={Link} to="/" value="home" label="Home" />
-        <CustomTab component={Link} to="/learning" value="learning" label="Learn" />
-        <CustomTab component={Link} to="/reading" value="reading" label="Read" />
-        <CustomTab component={Link} to="/speaking" value="speaking" label="Speak" />
+        <CustomTab component={Link} to="/survey" value="survey" label="Survey"/>
+        <CustomTab component={Link} to="/learning_1" value="learning_1" label="Level 1" />
+        <CustomTab component={Link} to="/learning" value="learning" label="General Learn" />
+        <CustomTab component={Link} to="/reading" value="reading" label="General Read" />
+        <CustomTab component={Link} to="/speaking" value="speaking" label="General Speak" />
         {/* <CustomTab component={Link} to="/mediapipe" value="mediapipe" label="mediapipe" /> */}
 
       </Tabs>
