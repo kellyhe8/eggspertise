@@ -58,7 +58,11 @@ class LetterHintFeature extends React.Component {
       <div className="row" style={{minWidth: "200px"}}>
         <Button sx={{mb: "10px"}} color="secondary" variant="outlined" size="small"
           onClick={this.onToggleHint}>Hint</Button> 
-        {this.props.toggled && this.state.letterSubset}
+        {this.props.toggled && 
+        <div>
+          <p className="line-height-dense"> The answer is in one of these letters. Toggle hint again for smaller subset of letters.</p>
+          {this.state.letterSubset}
+        </div>}
       </div>
     );
   }

@@ -22,7 +22,7 @@ export default function MediaPipe(props) {
 
   const toggleSendFrame = () => {
     const data = {};
-    if (jointData.length > 0 && !props.isWrong) {
+    if (jointData.length > 0 && !props.isWon) {
       jointData.forEach((val, i) => data[i] = val)
       request(data)
     }
