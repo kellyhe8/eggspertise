@@ -21,7 +21,7 @@ export default function MediaPipe(props) {
 
   const toggleSendFrame = () => {
     const data = {};
-    if (jointData.length > 0 && !props.isWon) {
+    if (jointData.length > 0 && !props.isWrong) {
       jointData.forEach((val, i) => data[i] = val)
       request(data)
     }
@@ -41,7 +41,6 @@ export default function MediaPipe(props) {
     console.log("Send request");
     axios.post('http://localhost:3001', jointData, {headers:{ 'Content-Type': 'application/json' }})
       .then((res) => {
-        console.log(res.data.data);
         props.onCheckGuess(res.data.data)
         // setErrorMsg("");
       }).catch((error) => {
@@ -77,9 +76,15 @@ export default function MediaPipe(props) {
         height: 400,
       });
       camera.start();
+      // setTimeout(toggleSendFrame, 5000);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!props.isWon) {
       setTimeout(toggleSendFrame, 5000);
     }
-  }, [sendFrame]);
+  }, [sendFrame, props.isWon]);
 
   function onResults(results) {
     canvasRef.current.width = webcamRef.current.video.videoWidth;

@@ -26,8 +26,6 @@ export default function CenterTutorialCol(props) {
   }
 
   const checkGuess = (guess) => {
-    console.log(guess);
-    console.log(answer);
     const correct = answer.toUpperCase() === guess.toUpperCase()
     setPoints(correct ? points + 1 : points);
     setWon(correct || won ? true : false);
