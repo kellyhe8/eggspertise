@@ -31,7 +31,16 @@ class LetterHintFeature extends React.Component {
 
 
   getNewSubset = () => {
-    const letterSubsetWithoutAnswer = this.shuffleArray(this.state.letterSubset.filter((letter) => letter !== this.props.answer));
+    const {resetHints, toggleHintReset} = this.props;
+
+    let letterSubsetWithoutAnswer;
+    if (resetHints) {
+      const resetLetterSubset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+      letterSubsetWithoutAnswer = this.shuffleArray(resetLetterSubset.filter((letter) => letter !== this.props.answer));
+      toggleHintReset(false);
+    } else {
+      letterSubsetWithoutAnswer = this.shuffleArray(this.state.letterSubset.filter((letter) => letter !== this.props.answer));
+    }
     const lengthOfNewSubset = letterSubsetWithoutAnswer.length/2;
     const newLetterSubset = letterSubsetWithoutAnswer.slice(0, lengthOfNewSubset);
     newLetterSubset.push(this.props.answer);
@@ -44,7 +53,6 @@ class LetterHintFeature extends React.Component {
       const {toggleHint, toggled} = this.props;
       toggleHint();
       if (!toggled) {
-        this.setState({hintsSeen: this.state.hintsSeen + 1});
         this.getNewSubset();
       }
   }

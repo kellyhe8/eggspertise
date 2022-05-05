@@ -18,6 +18,8 @@ export default function CenterReadCol(props) {
   const [won, setWon] = useState(false);
   const [score, setScore] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [resetHints, setResetHints] = useState(false);
+  const [hintsSeen, setHintsSeen] = useState(0);
 
   const nextLetter = () => {
     if (props.globalName) {
@@ -52,6 +54,10 @@ export default function CenterReadCol(props) {
       return false;
     }
   }
+
+  const incrementHintsSeen = () => {
+    setHintsSeen(hintsSeen + 1);
+  }
   
   const reset = () => {
     if (showAnswer) {
@@ -61,6 +67,7 @@ export default function CenterReadCol(props) {
     setGuesses([]);
     setWon(false);
     setShowAnswer(false);
+    setResetHints(true);
     nextLetter();
     if (props.toggled) {
       props.toggleHint();
@@ -102,7 +109,7 @@ export default function CenterReadCol(props) {
         </div>
       </div>
       <div className=''>
-        <LetterHintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
+        <LetterHintFeature toggled={props.toggled} toggleHint={props.toggleHint} resetHints={resetHints} toggleHintReset={setResetHints} answer={answer}/>
         <br/>
         <SpeechDetection won={won} showAnswer={showAnswer} toggleHint={props.toggleHint} onCheckGuess={checkGuess} onNext={reset} onViewAnswer={setShowAnswerTrue}/>
         
