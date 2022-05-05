@@ -71,7 +71,7 @@ export default function CenterLearnCol(props) {
               : "Select an answer."} 
           </h3>
 
-          <div className="video-box">
+          <div className="video-box" >
             <img src={LearnImages[answer]} 
               alt="asl-letter-recognition" 
               width="500" 

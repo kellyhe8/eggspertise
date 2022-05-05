@@ -20,7 +20,7 @@ export default function Level1Read(props) {
               <LevelNavBar />
               <CenterLevel1Read globalName={props.globalName}/>
           </div> : 
-          "Please go to the survey and fill it out first"
+          <p>Please go to the survey and fill it out first</p>
         }
       </div>
     </>

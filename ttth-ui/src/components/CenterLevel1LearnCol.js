@@ -44,7 +44,7 @@ export default function CenterLevel1LearnCol(props) {
     <div className="column">
       <div className="row center-col">
         <p className="line-height-dense">Welcome {props.globalName}! We will begin learning how to sign your name. </p>
-        <p className="line-height-dense">Sign the given letter and submit to check!</p>
+        <p className="line-height-dense">Sign the given letter and hold the pose!</p>
         
         <div className="pink-background row flex-row-center">
         <h3>{answer}</h3>
@@ -52,7 +52,7 @@ export default function CenterLevel1LearnCol(props) {
           <div className="row">
             
             <img src={LearnImages[answer]} 
-                style={{transform: "scaleX(-1)"}}
+                style={{transform: "scaleX(-1)", marginBottom: "1em"}}
                 alt="asl-letter-recognition" 
                 width="600" 
                 className="">

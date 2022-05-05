@@ -36,22 +36,25 @@ export default function LevelNavBar() {
 
   // render() { 
     return (
-    // <div className="left-col">
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        textColor="secondary"
-        indicatorColor="secondary"
-        aria-label="navigation-tabs"
-        className="column"
-        orientation="horizontal"
-      > 
-        <CustomTab component={Link} to="/learning_1" value="learning_1" label="Learn" />
-        <CustomTab component={Link} to="/reading_1" value="reading_1" label="Read" />
-        <CustomTab component={Link} to="/speaking_1" value="speaking_1" label="Speak" />
-        {/* <CustomTab component={Link} to="/mediapipe" value="mediapipe" label="mediapipe" /> */}
+      <>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          textColor="secondary"
+          indicatorColor="secondary"
+          aria-label="navigation-tabs"
+          className="column"
+          orientation="horizontal"
+        > 
+          <CustomTab component={Link} to="/learning_1" value="learning_1" label="Learn" />
+          <CustomTab component={Link} to="/reading_1" value="reading_1" label="Read" />
+          <CustomTab component={Link} to="/speaking_1" value="speaking_1" label="Speak" />
+          
+          {/* <CustomTab component={Link} to="/mediapipe" value="mediapipe" label="mediapipe" /> */}
 
-      </Tabs>
+        </Tabs>
+        <br/>
+      </>
     );
   }
 // }

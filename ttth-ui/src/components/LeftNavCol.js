@@ -58,9 +58,9 @@ export default function LeftNavCol() {
         <CustomTab component={Link} to="/" value="home" label="Home" />
         <CustomTab component={Link} to="/survey" value="survey" label="Survey"/>
         <CustomTab component={Link} to="/learning_1" value="learning_1" label="Level 1" />
-        <CustomTab component={Link} to="/learning" value="learning" label="General Learn" />
-        <CustomTab component={Link} to="/reading" value="reading" label="General Read" />
-        <CustomTab component={Link} to="/speaking" value="speaking" label="General Speak" />
+        <CustomTab component={Link} to="/learning" value="learning" label="Learn All" />
+        <CustomTab component={Link} to="/reading" value="reading" label="Read All" />
+        <CustomTab component={Link} to="/speaking" value="speaking" label="Speak All" />
         {/* <CustomTab component={Link} to="/mediapipe" value="mediapipe" label="mediapipe" /> */}
 
       </Tabs>

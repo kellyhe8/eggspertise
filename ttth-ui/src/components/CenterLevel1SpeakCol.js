@@ -41,7 +41,7 @@ export default function CenterLevel1SpeakCol(props) {
   return (
     <div className="column">
       <div className="row center-col">
-        <p className="line-height-dense">Sign the given letter and submit to check!</p>
+        <p className="line-height-dense">Sign the given letter and hold the pose!</p>
         
         <div className="pink-background row flex-row-center">
         <h3>Sign {answer}</h3>

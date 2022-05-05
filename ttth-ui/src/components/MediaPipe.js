@@ -13,6 +13,7 @@ export default function MediaPipe(props) {
 
   const [sendFrame, setSendFrame] = useState(false);
   const [jointData, setJointData] = useState([]);
+  const [countdown, setCountdown] = useState("5");
 
   // const [errorMsg, setErrorMsg] = useState("");
   // const [isLoading, setIsLoading] = useState(false);
@@ -79,7 +80,30 @@ export default function MediaPipe(props) {
 
   useEffect(() => {
     if (!props.isWon) {
-      setTimeout(toggleSendFrame, 5000);
+      setTimeout(() => {
+        setCountdown("5")
+        setTimeout(() => {
+          setCountdown("4")
+          setTimeout(() => {
+            setCountdown("3")
+            setTimeout(() => {
+              setCountdown("2")
+              setTimeout(() => {
+                setCountdown("1");
+                setTimeout(() => {
+                  setCountdown("sent!");
+                  toggleSendFrame()
+                }, 1000);
+              }, 1000);
+            }, 1000);
+          }, 1000);
+        }, 1000);
+      }, 1000);
+      
+      
+      
+      
+      // setTimeout(toggleSendFrame, 5000);
     }
   }, [sendFrame, props.isWon]);
 
@@ -107,26 +131,34 @@ export default function MediaPipe(props) {
 
   return (
     <>
-      <Webcam
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat="image/jpg"
-        width={600}
-        height={400}
-        hidden={true}
-        // videoConstraints={videoConstraints}
-        style={{display: "none"}}
-      />
-      <canvas ref={canvasRef} style={{width: 600, height: 400}}/>
+      
+      <div className="webcam-countdown" style={{marginBottom:"1em"}}>
+        <div style={{"textAlign": "center"}}>
+          <h3 className="line-height-dense" style={{marginBottom: 0}}>{countdown}</h3>
+        </div>
+        <Webcam
+          audio={false}
+          ref={webcamRef}
+          screenshotFormat="image/jpg"
+          width={600}
+          height={400}
+          hidden={true}
+          // videoConstraints={videoConstraints}
+          style={{display: "none"}}
+        />
+        <canvas ref={canvasRef} style={{width: 600, height: 400}}/>
+      </div>
+      
       {/* <video ref={videoRef} onCanPlay={() => getImage()} />   */}
       {/* <p>{errorMsg}</p> */}
-      <Button 
+      
+      {/* <Button 
         // loading={isLoading}
         // loadingPosition="center"
         disabled={props.isWon} 
         onClick={() => {
           toggleSendFrame();
-        }} variant="contained" color="secondary"> Submit</Button>  
+        }} variant="contained" color="secondary"> Submit</Button>   */}
     </>      
   );
 }

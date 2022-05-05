@@ -20,7 +20,7 @@ export default function Level1Learn(props) {
               <LevelNavBar />
               <CenterLevel1Learn globalName={props.globalName}/>
           </div> : 
-          "Please go to the survey and fill it out first"
+          <p className="line-height-dense correct">Please go to the survey and fill it out first</p>
         }
       </div>
     </>
