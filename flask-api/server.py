@@ -103,7 +103,7 @@ def check_S(input):
             if intersect(A,B,C,D):
                 intersects = True
                 break
-    print("inters", intersects)
+    # print("inters", intersects)
     if not intersects: 
         return "Tuck your thumb in across your fist"
     # if std_err > 1.2:
@@ -185,10 +185,10 @@ def home():
         
         prediction = asl_mediapipe_model.predict(input).argmax(axis=-1)[0]
         letter = letters[prediction]
-        feedback = check_S(input[0])
+        feedback = "Good job!"
         if prediction != letter:
-            feedback = check_S(input[0])
-            # feedback = feedback_fns[answer](input[0])
+            # feedback = check_S(input[0])
+            feedback = feedback_fns[answer](input[0])
         response = jsonify({'data': letter, 'feedback': feedback})
         response.headers.add('Access-Control-Allow-Origin', '*')
 
