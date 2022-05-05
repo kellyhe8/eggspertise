@@ -48,7 +48,7 @@ export default function CenterLevel1LearnCol(props) {
         
         <div className="pink-background row flex-row-center">
         <h3>{answer}</h3>
-        <h3 className="line-height-dense feedback">{guess ? `You just signed ${guess}. ${won ? `Good job!` : `Wrong - try again.`}` : ""}</h3>
+        <h3 className={`line-height-dense ${won ? 'correct' : 'feedback'}`}>{guess ? `You just signed ${guess}. ${won ? `Good job!` : `Wrong - try again.`}` : ""}</h3>
           <div className="row">
             
             <img src={LearnImages[answer]} 

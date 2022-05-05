@@ -35,7 +35,7 @@ export default function NameQuestionnaire(props) {
     }
 
     const onConfirmName = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
         props.onSetGlobalName(name);
         const utterance = new SpeechSynthesisUtterance(`Thank you, ${name}.`);
         speechSynthesis.speak(utterance);
@@ -61,6 +61,12 @@ export default function NameQuestionnaire(props) {
     //     speechSynthesis.speak(utterance);
     //     console.log("Said once")
     // }
+
+    const onRestart = () => {
+        const utterance = new SpeechSynthesisUtterance('Please say your name again.');
+        speechSynthesis.speak(utterance);
+        setName("");
+    }
 
     const onStartSurvey = () => {
         const utterance = new SpeechSynthesisUtterance('To start off, please tell me your name?');
@@ -88,6 +94,8 @@ export default function NameQuestionnaire(props) {
                 <SpeechDetection 
                     onNameSaid={onNameSaid.bind(this)}
                     onSetGlobalName={props.onSetGlobalName}
+                    onConfirmName={onConfirmName.bind(this)}
+                    onRestart={onRestart.bind(this)}
                     name={name}
                 />
             </div>

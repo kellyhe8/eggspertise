@@ -42,7 +42,7 @@ export default function CenterPracticeCol(props) {
         
         <div className="pink-background row flex-row-center">
         <h3>Sign {answer}</h3>
-        <h3 className="line-height-dense feedback">{guess ? `You just signed ${guess}. ${won ? `Good job! +1 point!` : `Wrong - try again.`}` : ""}</h3>
+        <h3 className={`line-height-dense ${won ? 'correct' : 'feedback'}`}>{guess ? `You just signed ${guess}. ${won ? `Good job! +1 point!` : `Wrong - try again.`}` : ""}</h3>
           <div className="video-box">
             <MediaPipe onCheckGuess={checkGuess} isWon={won}/>
             <p className="line-height-dense">Score: {points}</p>

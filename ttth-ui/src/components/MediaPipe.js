@@ -13,6 +13,7 @@ export default function MediaPipe(props) {
 
   const [sendFrame, setSendFrame] = useState(false);
   const [jointData, setJointData] = useState([]);
+
   // const [errorMsg, setErrorMsg] = useState("");
   // const [isLoading, setIsLoading] = useState(false);
   const webcamRef = useRef(null);
