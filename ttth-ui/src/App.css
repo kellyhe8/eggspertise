@@ -194,6 +194,10 @@ h3 {
    /* justify-content: center; */
 }
 
+.correct {
+  color: var(--green);
+}
+
 .feedback {
   color: var(--red);
 }

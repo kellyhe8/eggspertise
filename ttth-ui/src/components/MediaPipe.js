@@ -13,6 +13,7 @@ export default function MediaPipe(props) {
 
   const [sendFrame, setSendFrame] = useState(false);
   const [jointData, setJointData] = useState([]);
+
   // const [errorMsg, setErrorMsg] = useState("");
   // const [isLoading, setIsLoading] = useState(false);
   const webcamRef = useRef(null);
@@ -21,7 +22,7 @@ export default function MediaPipe(props) {
 
   const toggleSendFrame = () => {
     const data = {};
-    if (jointData.length > 0 && !props.isWrong) {
+    if (jointData.length > 0 && !props.isWon) {
       jointData.forEach((val, i) => data[i] = val)
       request(data)
     }

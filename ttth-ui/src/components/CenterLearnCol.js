@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import LetterInput from "./LetterInput";
 import HintFeature from './HintFeature';
+import LetterHintFeature from './LetterHintFeature';
 import { LearnImages } from "./LettersImages";
 import SpeechDetection from "./SpeechDetectionLearn";
 
@@ -64,7 +65,7 @@ export default function CenterLearnCol(props) {
         <p className="line-height-dense">Say the letter aloud or select the answer below.</p>
 
         <div className="pink-background row flex-row-center">
-        <h3 className="line-height-dense feedback">
+        <h3 className={`line-height-dense ${won ? 'correct' : 'feedback'}`}>
           {showAnswer ? "You cheated! -1 point!" 
             : guess ? `You guessed "${guess}". ${won ? "Good job! +1 point!" : "Wrong - try again."}` 
               : "Select an answer."} 
@@ -93,7 +94,7 @@ export default function CenterLearnCol(props) {
         </div>
       </div>
       <div className=''>
-        <HintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
+        <LetterHintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
         <br/>
         <SpeechDetection won={won} showAnswer={showAnswer} toggleHint={props.toggleHint} onCheckGuess={checkGuess} onNext={reset} onViewAnswer={setShowAnswerTrue}/>
         

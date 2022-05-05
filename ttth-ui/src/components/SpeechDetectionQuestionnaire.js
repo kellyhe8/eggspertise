@@ -2,14 +2,19 @@ import React, { useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
+import { useNavigate } from 'react-router';
+
+
 export default function SpeechDetectionQuestionnaire(props) {
   const [guess, setGuess] = useState('')
+
+  const navigate = useNavigate();
 
   const commands = [
     {
       command: "My name is *",
       callback: (name) => {
-        resetTranscript()
+        resetTranscript();
         props.onNameSaid(name);
       }
     },
@@ -18,10 +23,29 @@ export default function SpeechDetectionQuestionnaire(props) {
         callback: () => {
             if (props.name) {
                 resetTranscript();
-                props.onSetGlobalName(props.name);
+                props.onConfirmName();
+                // props.onSetGlobalName(props.name);
+                // navigate('/learning_1');
+
+                // const utterance = new SpeechSynthesisUtterance(`Thank you, ${props.name}.`);
+                // speechSynthesis.speak(utterance);
+        
+                // const utterance2 = new SpeechSynthesisUtterance(`Let's start with learning your name!`);
+                // speechSynthesis.speak(utterance2);
+        
+                // navigate('/learning_1');
             }
         }
-    }
+    },
+    {
+      command: ["no","incorrect"],
+      callback: () => {
+          if (props.name) {
+              resetTranscript();
+              props.onRestart();
+          }
+      }
+  },
   ]
 
   const {
