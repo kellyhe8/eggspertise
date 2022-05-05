@@ -13,6 +13,7 @@ export default function CenterTutorialCol(props) {
   const [answer, setAnswer] = useState(alphabet[Math.floor(Math.random() * alphabet.length)]);
   const [guess, setGuess] = useState("");
   const [won, setWon] = useState(false);
+  const [feedback, setFeedback] = useState("");
   const [points, setPoints] = useState(0);
 
   const reset = () => {
@@ -25,11 +26,12 @@ export default function CenterTutorialCol(props) {
     }
   }
 
-  const checkGuess = (guess) => {
-    const correct = answer.toUpperCase() === guess.toUpperCase()
+  const checkGuess = (guessAndFeedback) => {
+    const correct = answer.toUpperCase() === guessAndFeedback["guess"].toUpperCase()
     setPoints(correct ? points + 1 : points);
     setWon(correct || won ? true : false);
-    setGuess(guess);
+    setGuess(guessAndFeedback["guess"]);
+    setFeedback(guessAndFeedback["feedback"]);
     if (correct && props.toggled) {
       // turn off hint after getting it right
       props.toggleHint();
@@ -45,6 +47,7 @@ export default function CenterTutorialCol(props) {
         <div className="pink-background row flex-row-center">
         <h3>{answer}</h3>
         <h3 className="line-height-dense feedback">{guess ? `You just signed ${guess}. ${won ? `Good job!` : `Wrong - try again.`}` : ""}</h3>
+        <h3 className="line-height-dense feedback">{feedback}</h3>
           <div className="row">
             
             <img src={LearnImages[answer]} 
@@ -54,7 +57,7 @@ export default function CenterTutorialCol(props) {
                 className="">
             </img>
             <div className="video-box">
-            <MediaPipe onCheckGuess={checkGuess} isWon={won}/>
+            <MediaPipe onCheckGuess={checkGuess} answer={answer} isWon={won}/>
 
             
             </div>

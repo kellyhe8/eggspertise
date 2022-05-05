@@ -29,17 +29,13 @@ export default function MediaPipe(props) {
   // https://stackoverflow.com/questions/67674453/how-to-run-mediapipe-facemesh-on-a-es6-node-js-environment-alike-react
 
   let request = async (jointData) => {
-    // console.log("redoting request");
-    var myDataObj = {"img": jointData};
-    var formData = new FormData();
-
-    for (var key in myDataObj) {
-      formData.append(key, myDataObj[key])
-    } 
     // axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
+    // console.log("poo",jointData)
+    jointData["answer"] = props.answer
     axios.post('http://localhost:3001', jointData, {headers:{ 'Content-Type': 'application/json' }})
       .then((res) => {
-        props.onCheckGuess(res.data.data)
+        props.onCheckGuess({guess: res.data.data, feedback: res.data.feedback})
+        
         // setErrorMsg("");
       }).catch((error) => {
         // console.log(error);
