@@ -170,7 +170,6 @@ def home():
         joint_data = request.json
         answer = request.json["answer"]
         handedness = request.json["handedness"]
-        print(handedness)
         # answer = request.form.get("answer") # form = body
         # print("POO",answer, joint_data)
         joint_matrix = []
