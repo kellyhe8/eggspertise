@@ -23,10 +23,10 @@ export default function CenterHomeCol() {
       <br/>
       
       <p className="line-height-dense">
-      <b>Learn Mode:</b> flashcard-style learning.
+      <b>Read Mode:</b> flashcard-style learning.
       </p>
       <p className="line-height-dense">
-      <b>Practice Mode:</b> sign letters and see how accurate you are!
+      <b>Speak Mode:</b> sign letters and see how accurate you are!
       </p>
       <br/>
       <p className="line-height-dense">

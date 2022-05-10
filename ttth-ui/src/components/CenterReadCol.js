@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 import LetterInput from "./LetterInput";
-// import HintFeature from './HintFeature';
-import LetterHintFeature from './LetterHintFeature';
 import { LearnImages } from "./LettersImages";
 import SpeechDetection from "./SpeechDetectionLearn";
+import Button from '@mui/material/Button';
+
 
 
 export default function CenterReadCol(props) {
@@ -18,6 +18,34 @@ export default function CenterReadCol(props) {
   const [won, setWon] = useState(false);
   const [score, setScore] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [hintLetterSubset, setHintLetterSubset] = useState("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""))
+  const [hintsSeen, setHintsSeen] = useState(0);
+
+  const shuffleArray = (arr) => {
+    for (var i = arr.length - 1; i > 0; i--) {
+      // Generate random number
+      var j = Math.floor(Math.random() * (i + 1));
+
+      var temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+    return arr;
+  }
+
+  const hintGetNewSubset = () => {
+    const letterSubsetWithoutAnswer = shuffleArray(hintLetterSubset.filter((letter) => letter !== answer));
+    const lengthOfNewSubset = letterSubsetWithoutAnswer.length/2;
+    const newLetterSubset = letterSubsetWithoutAnswer.slice(0, lengthOfNewSubset);
+    newLetterSubset.push(answer);
+    const letterSubsetWithAnswer = shuffleArray(newLetterSubset);
+    setHintLetterSubset(letterSubsetWithAnswer);
+  }
+
+  const showHint = () => {
+    setHintsSeen(hintsSeen + 1)
+    hintGetNewSubset();
+  }
 
   const nextLetter = () => {
     if (props.globalName) {
@@ -30,11 +58,8 @@ export default function CenterReadCol(props) {
   }
 
   const setShowAnswerTrue = () => {
-    // if showing answer, -1 point and untoggle the hint if it's on
+    // if showing answer, -1 point
     setScore(score - 1);
-    if (props.toggled) {
-      props.toggleHint();
-    }
     setShowAnswer(true);
   }
 
@@ -54,17 +79,13 @@ export default function CenterReadCol(props) {
   }
   
   const reset = () => {
-    if (showAnswer) {
-      
-    }
     setGuess("");
     setGuesses([]);
+    setHintsSeen(0);
+    setHintLetterSubset("ABCDEFGHIJKLMNOPQRSTUVWXYZ".split(""));
     setWon(false);
     setShowAnswer(false);
     nextLetter();
-    if (props.toggled) {
-      props.toggleHint();
-    }
   }
 
   return (
@@ -91,9 +112,10 @@ export default function CenterReadCol(props) {
           <LetterInput 
             answer={answer} 
             guesses={guesses}
+            hintAnswers={hintLetterSubset}
             won={won}
             nextLetter={nextLetter.bind(this)} 
-            reset={reset.bind(this)} 
+            reset={reset.bind(this)}
             checkGuess={checkGuess.bind(this)}
             showAnswer={showAnswer} 
             setShowAnswerTrue={setShowAnswerTrue}
@@ -101,10 +123,19 @@ export default function CenterReadCol(props) {
 
         </div>
       </div>
-      <div className=''>
-        <LetterHintFeature toggled={props.toggled} toggleHint={props.toggleHint} answer={answer}/>
+      <div className="row" style={{minWidth: "200px"}}>
+        <Button 
+          sx={{mb: "10px"}} 
+          color="secondary" 
+          variant="outlined" 
+          size="small"
+          onClick={showHint}
+          disabled={won || hintLetterSubset.length <= 2}
+        >
+            {hintsSeen === 0 ? "Get Hint" : hintsSeen === 4 ?  "No more hints" : "Another Hint"}
+        </Button> 
         <br/>
-        <SpeechDetection won={won} showAnswer={showAnswer} toggleHint={props.toggleHint} onCheckGuess={checkGuess} onNext={reset} onViewAnswer={setShowAnswerTrue}/>
+        <SpeechDetection won={won} showAnswer={showAnswer} onCheckGuess={checkGuess} onNext={reset} onViewAnswer={setShowAnswerTrue}/>
         
       </div>
       

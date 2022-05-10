@@ -189,7 +189,7 @@ def home():
         if letter != answer:
             # feedback = check_S(input[0])
             feedback = feedback_fns[answer](input[0])
-        response = jsonify({'data': letter, 'feedback': feedback})
+        response = jsonify({'data': letter, 'feedback': feedback, 'answer': answer})
         response.headers.add('Access-Control-Allow-Origin', '*')
 
         return response
