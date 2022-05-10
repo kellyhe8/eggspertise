@@ -6,7 +6,6 @@ import SpeechDetection from "./SpeechDetectionLearn";
 import Button from '@mui/material/Button';
 
 
-
 export default function CenterReadCol(props) {
   const alphabet = props.globalName ? props.globalName.toUpperCase().replace(/\s/g, "").split('') : "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const [currentIndex, setCurrentIndex] = useState(0);
