@@ -24,7 +24,7 @@ CORS(app)
 
 def get_limbs(input):
     # format ([x1, x2, x3, ...], [y1, y2, y3, ...])
-    thumb = ([p[0] for p in input[1:5]], [p[1] for p in input[1:5]])
+    thumb = ([p[0] for p in input[3:5]], [p[1] for p in input[3:5]])
     pointer = ([p[0] for p in input[5:9]], [p[1] for p in input[5:9]])
     # print("pointer coords", [(p[0],p[1]) for p in input[5:9]])
     middle = ([p[0] for p in input[9:13]], [p[1] for p in input[9:13]])
@@ -62,7 +62,7 @@ def check_A(input):
             C = (pointer[0][j], pointer[1][i])
             D = (pointer[0][i+1], pointer[1][i+1])
             if intersect(A,B,C,D):
-                return "Try to move your thumb more on the side of your hand"
+                return "Try to untuck your thumb, move to the side of your hand"
     if std_err > 1.2:
         return "Try straightening your thumb more"
 
