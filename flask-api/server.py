@@ -2,7 +2,7 @@
 # import necessary libraries and functions
 from flask import Flask, jsonify, request
 
-import skimage
+# import skimage
 from skimage.transform import resize
 import scipy
 
@@ -14,7 +14,7 @@ from keras.models import load_model
 
 from flask_cors import CORS
 
-import json
+# import json
 
 
   
