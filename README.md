@@ -4,9 +4,9 @@ Multimodal sign language learning platform.
 ## Table of Contents
 - `/flask-api` - Flask server for running a local backend for our Web application
   - `*.h5` files - saved Keras models that can be loaded and used to predict ASL signs
-  - server.py - Flask backend that receives post requests from Web application
-  - tfjs_asl_model - Initial ASL model using raw image input data (not used in final backend)
-  - asl_alphabet_mediapipe.ipynb - Python notebook for training our ASL model based on mediapipe hand joint inputs
+  - `server.py` - Flask backend that receives post requests from Web application
+  - `tfjs_asl_model` - Initial ASL model using raw image input data (not used in final backend)
+  - `asl_alphabet_mediapipe.ipynb` - Python notebook for training our ASL model based on mediapipe hand joint inputs
 - `/ttth-ui` - ReactJS front end for building our UI
   - `/node_modules` - Modules imported to use in react (auto generated after running `npm i`)
   - `/public` - HTML and favicons
@@ -22,16 +22,16 @@ We are running it on:
 - python 3
 - node v14.17.6
 
-- Open 2 terminals; one for the frontend and one for the backend
-  - for the backend:
-    - go to the `/flask-api` directory: `cd flask-api`
-    - install requirements: `pip install -r requirements.txt`
-    - run the server: `python server.py`
+Open 2 terminals; one for the frontend and one for the backend
+- for the backend:
+  - go to the `/flask-api` directory: `cd flask-api`
+  - install requirements: `pip install -r requirements.txt`
+  - run the server: `python server.py`
 
-  - for the front end:
-    - `cd ttth-ui/client`
-    - `npm i`
-    - `npm start`
-    - allow webcam and microphone access when prompted
-  - Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- for the front end:
+  - go to the `/ttth-ui` directory: `cd ttth-ui/`
+  - install dependencies: `npm i`
+  - start the server: `npm start`
+  - allow webcam and microphone access when prompted
+- Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
