@@ -169,13 +169,18 @@ def home():
 
         joint_data = request.json
         answer = request.json["answer"]
+        handedness = request.json["handedness"]
         # answer = request.form.get("answer") # form = body
         # print("POO",answer, joint_data)
         joint_matrix = []
         for joint in joint_data.keys():
             if joint == "answer":
                 continue
+            if joint == "handedness":
+                continue
             x, y, z = joint_data[joint]['x'], joint_data[joint]['y'], joint_data[joint]['z']
+            if (handedness == "Left"):
+                x = 1-x
             joint_matrix.append(np.array([x,y,z]))
 
         input = np.array(joint_matrix).reshape(-1,21,3)

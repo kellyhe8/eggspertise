@@ -13,6 +13,7 @@ export default function MediaPipe(props) {
 
   const [sendFrame, setSendFrame] = useState(false);
   const [jointData, setJointData] = useState([]);
+  const [handedness, setHandedness] = useState("");
   const [countdown, setCountdown] = useState("5");
 
   // const [errorMsg, setErrorMsg] = useState("");
@@ -35,6 +36,7 @@ export default function MediaPipe(props) {
     // axios.post('http://127.0.0.1:5000', formData, {headers:{ 'Content-Type': 'multipart/form-data' }})
     // console.log("poo",jointData)
     jointData["answer"] = props.answer
+    jointData["handedness"] = handedness;
     // console.log("Send request");
     axios.post('http://localhost:3001', jointData, {headers:{ 'Content-Type': 'application/json' }})
       .then((res) => {
@@ -122,6 +124,9 @@ export default function MediaPipe(props) {
     canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
 
     if (results.multiHandLandmarks) {
+      if (results.multiHandedness[0] !== undefined) {
+        setHandedness(results.multiHandedness[0].label);
+      }
       for (const landmarks of results.multiHandLandmarks) {
         setJointData(landmarks);
         drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS, {color: '#6A8D73', lineWidth: 3});
